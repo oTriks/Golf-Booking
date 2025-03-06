@@ -8,27 +8,21 @@ using Azure.Extensions.AspNetCore.Configuration.Secrets;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Lägg till Key Vault som konfigurationskälla
 var kvUri = "https://golfbookingvault.vault.azure.net";
 builder.Configuration.AddAzureKeyVault(new Uri(kvUri), new DefaultAzureCredential());
 
-// Skapa en Key Vault client (om du behöver hämta andra hemligheter, t.ex. connection string)
 var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
 
-// Exempel: Hämta connection string (du kan även ha denna i appsettings.json eller i Key Vault)
 KeyVaultSecret secret = client.GetSecret("ConnectDefault");
 var connectionString = secret.Value;
 Console.WriteLine($"Connection string successfully retrieved from Key Vault: {connectionString}");
 
-// Configure DbContext with the retrieved connection string
 builder.Services.AddDbContext<BookingContext>(options =>
     options.UseSqlServer(connectionString)
            .LogTo(Console.WriteLine, LogLevel.Information));
 
-// Registrera controllers
 builder.Services.AddControllers();
 
-// Konfigurera JWT-autentisering med värden hämtade från Key Vault via builder.Configuration
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -52,16 +46,13 @@ Console.WriteLine($"jwt-audience: {builder.Configuration["jwt-audience"]}");
 Console.WriteLine($"jwt-key: {builder.Configuration["jwt-key"]}");
 
 
-// Lägg till Authorization
 builder.Services.AddAuthorization();
 
-// Add Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Enable Swagger in Development Environment
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -70,14 +61,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Lägg till Authentication och Authorization i middleware-pipelinen
 app.UseAuthentication();
 app.UseAuthorization();
 
-// Mappa controllers
 app.MapControllers();
 
-// Exempel WeatherForecast API Endpoint
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild",
@@ -98,7 +86,6 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
-// Testa databaskopplingen innan applikationen körs
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<BookingContext>();
@@ -117,7 +104,6 @@ using (var scope = app.Services.CreateScope())
 
 app.Run();
 
-// Define a WeatherForecast record for demonstration purposes
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
