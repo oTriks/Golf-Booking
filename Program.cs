@@ -5,24 +5,30 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// **1. Retrieve Connection String from Azure Key Vault**
 var kvUri = "https://golfbookingvault.vault.azure.net";
 builder.Configuration.AddAzureKeyVault(new Uri(kvUri), new DefaultAzureCredential());
 
 var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
-
 KeyVaultSecret secret = client.GetSecret("ConnectDefault");
 var connectionString = secret.Value;
-Console.WriteLine($"Connection string successfully retrieved from Key Vault: {connectionString}");
+Console.WriteLine($"Connection string successfully retrieved from Key Vault.");
 
+// **2. Configure Database Context**
 builder.Services.AddDbContext<BookingContext>(options =>
-    options.UseSqlServer(connectionString)
-           .LogTo(Console.WriteLine, LogLevel.Information));
+    options.UseSqlServer(connectionString, sqlServerOptions =>
+        sqlServerOptions.EnableRetryOnFailure())
+    .LogTo(Console.WriteLine, LogLevel.Information)
+);
 
+// **3. Add Controllers**
 builder.Services.AddControllers();
 
+// **4. Configure Authentication & JWT Token Validation**
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -38,54 +44,61 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["jwt-issuer"],
         ValidAudience = builder.Configuration["jwt-audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt-key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["jwt-key"]!))
     };
 });
-Console.WriteLine($"jwt-issuer: {builder.Configuration["jwt-issuer"]}");
-Console.WriteLine($"jwt-audience: {builder.Configuration["jwt-audience"]}");
-Console.WriteLine($"jwt-key: {builder.Configuration["jwt-key"]}");
-
 
 builder.Services.AddAuthorization();
 
+// **5. Add API Documentation (Swagger)**
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Golf Booking API", Version = "v1" });
 
+    // Add JWT Authentication to Swagger
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Enter 'Bearer {token}' (without quotes) in the text input below.",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
 var app = builder.Build();
 
+// **6. Enable Swagger in Development Mode**
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// **7. Middleware Setup**
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
+// **8. Map Controllers**
 app.MapControllers();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild",
-    "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-app.MapGet("/", () => Results.Ok("Välkommen till Golf Booking API"));
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
+// **9. Health Check & Debugging**
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<BookingContext>();
@@ -103,8 +116,3 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

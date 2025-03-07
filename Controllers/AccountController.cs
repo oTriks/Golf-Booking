@@ -1,54 +1,32 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Golf_Booking.Models;
+using Golf_Booking.Dtos;
 
-[ApiController]
-[Route("[controller]")]
-public class AccountController : ControllerBase
+public static class JwtHelper
 {
-    private readonly IConfiguration _configuration;
-
-    public AccountController(IConfiguration configuration)
+    public static string GenerateJwtToken(string username, string role, IConfiguration config)
     {
-        _configuration = configuration;
-    }
-
-    [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginRequest request)
-    {
-
-        if (request.Username != "admin" || request.Password != "password")
-        {
-            return Unauthorized("Invalid credentials");
-        }
-
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, request.Username),
-            new Claim("role", "Admin"),
+            new Claim(ClaimTypes.NameIdentifier, username),
+            new Claim(JwtRegisteredClaimNames.Sub, username),
+            new Claim("role", role),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["jwt-key"]));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["jwt-key"]!));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
-            issuer: _configuration["jwt-issuer"],
-            audience: _configuration["jwt-audience"],
+            issuer: config["jwt-issuer"],
+            audience: config["jwt-audience"],
             claims: claims,
-            expires: DateTime.Now.AddMinutes(30),
+            expires: DateTime.Now.AddMinutes(60),
             signingCredentials: creds);
 
-        var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-
-        return Ok(new { token = tokenString });
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
-}
-
-public class LoginRequest
-{
-    public string Username { get; set; }
-    public string Password { get; set; }
 }
