@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfBookingAPI", "GolfBookingAPI\GolfBookingAPI.csproj", "{FFD69226-FE2B-4D44-BEBE-0FCD97A33E9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfBookingUI", "GolfBookingUI\GolfBookingUI.csproj", "{4B0961B5-E759-4B4E-BE24-BA466EC3A2A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GolfBooking.Shared", "GolfBooking.Shared\GolfBooking.Shared.csproj", "{05BB3A1F-C998-4362-BB2A-B2D0DB65CA13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFD69226-FE2B-4D44-BEBE-0FCD97A33E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD69226-FE2B-4D44-BEBE-0FCD97A33E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD69226-FE2B-4D44-BEBE-0FCD97A33E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD69226-FE2B-4D44-BEBE-0FCD97A33E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B0961B5-E759-4B4E-BE24-BA466EC3A2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B0961B5-E759-4B4E-BE24-BA466EC3A2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B0961B5-E759-4B4E-BE24-BA466EC3A2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B0961B5-E759-4B4E-BE24-BA466EC3A2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05BB3A1F-C998-4362-BB2A-B2D0DB65CA13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05BB3A1F-C998-4362-BB2A-B2D0DB65CA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05BB3A1F-C998-4362-BB2A-B2D0DB65CA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05BB3A1F-C998-4362-BB2A-B2D0DB65CA13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

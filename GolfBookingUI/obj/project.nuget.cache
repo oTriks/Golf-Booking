@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QtKf8EpZM2s=",
+  "dgSpecHash": "CklJYIMZpK8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\oTriks\\Desktop\\Azure\\Golf-Booking\\GolfBookingUI\\GolfBookingUI.csproj",
+  "projectFilePath": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\GolfBookingUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\oTriks\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.0\\microsoft.aspnetcore.authorization.9.0.0.nupkg.sha512",
     "C:\\Users\\oTriks\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.0\\microsoft.aspnetcore.components.9.0.0.nupkg.sha512",

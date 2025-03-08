@@ -1,0 +1,9 @@
+// File: GolfBooking.Shared/Dtos/LoginRequest.cs
+namespace GolfBooking.Shared.Dtos
+{
+    public class LoginRequest
+    {
+        public required string Username { get; set; }
+        public required string Password { get; set; }
+    }
+}
