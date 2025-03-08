@@ -1,0 +1,60 @@
+@page "/login"
+@inject HttpClient Http
+@using GolfBooking.Shared.Dtos
+
+<h3>User Login</h3>
+
+<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>Username:</label>
+        <InputText @bind-Value="loginModel.Username" />
+    </div>
+    <div>
+        <label>Password:</label>
+        <InputText @bind-Value="loginModel.Password" type="password" />
+    </div>
+    <button type="submit">Login</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(token))
+{
+    <p><strong>Token:</strong> @token</p>
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p>@message</p>
+}
+
+@code {
+    private LoginRequest loginModel = new LoginRequest { Username = string.Empty, Password = string.Empty };
+    private string? token;
+    private string? message;
+
+    private async Task HandleLogin()
+    {
+        // Replace "api/User/login" with the correct API URL if needed
+        var response = await Http.PostAsJsonAsync("api/User/login", loginModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            // Deserialize the token from the response (assumes it's returned as JSON { token: "..." })
+            var result = await response.Content.ReadFromJsonAsync<TokenResult>();
+            token = result?.token;
+            message = "Login successful.";
+        }
+        else
+        {
+            message = $"Login failed: {await response.Content.ReadAsStringAsync()}";
+        }
+    }
+
+    // Define a class to receive the token response.
+    private class TokenResult
+    {
+        public string? token { get; set; }
+    }
+}

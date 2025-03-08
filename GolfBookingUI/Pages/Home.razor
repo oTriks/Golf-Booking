@@ -1,7 +1,35 @@
-﻿@page "/"
+﻿@using GolfBookingUI.Models
+@using GolfBooking.Shared.Dtos
 
-<PageTitle>Home</PageTitle>
+@page "/"
+@inject GolfBookingUI.Services.GolfClubService ClubService
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<h3>Available Golf Clubs</h3>
+
+@if (clubs == null)
+{
+    <p><em>Loading clubs...</em></p>
+}
+else if (!clubs.Any())
+{
+    <p>No clubs found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var club in clubs)
+        {
+            <li>@club.Name - @club.Location (@club.Type)</li>
+        }
+    </ul>
+}
+
+@code {
+    private List<ClubReadDto>? clubs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        clubs = await ClubService.GetClubsAsync();
+    }
+}

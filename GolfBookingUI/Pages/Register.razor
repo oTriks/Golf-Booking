@@ -1,0 +1,66 @@
+@page "/register"
+@inject HttpClient Http
+@using GolfBooking.Shared.Dtos
+
+<h3>User Registration</h3>
+
+<EditForm Model="registerModel" OnValidSubmit="HandleRegister">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>Username:</label>
+        <InputText @bind-Value="registerModel.Username" />
+    </div>
+    <div>
+        <label>Password:</label>
+        <InputText @bind-Value="registerModel.Password" type="password" />
+    </div>
+    <div>
+        <label>Role:</label>
+        <InputSelect @bind-Value="registerModel.Role">
+            <option value="">-- Select Role --</option>
+            <option value="Player">Player</option>
+            <option value="Personal">Personal</option>
+        </InputSelect>
+    </div>
+    @* Only show club selection if Role is not Admin *@
+    @if (!string.Equals(registerModel.Role, "admin", StringComparison.OrdinalIgnoreCase))
+    {
+        <div>
+            <label>Golf Club ID:</label>
+            <InputNumber @bind-Value="registerModel.GolfClubId" />
+        </div>
+    }
+    <button type="submit">Register</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p>@message</p>
+}
+
+@code {
+    private RegisterRequest registerModel = new RegisterRequest
+    {
+        Username = string.Empty,
+        Password = string.Empty,
+        Role = string.Empty
+    };
+    private string? message;
+
+    private async Task HandleRegister()
+    {
+        // Replace "api/User/register" with the correct URL if needed
+        var response = await Http.PostAsJsonAsync("api/User/register", registerModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            message = "User registered successfully.";
+        }
+        else
+        {
+            message = $"Registration failed: {await response.Content.ReadAsStringAsync()}";
+        }
+    }
+}
