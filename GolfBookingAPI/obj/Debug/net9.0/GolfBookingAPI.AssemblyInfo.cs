@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GolfBookingAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c820653cb2f3b08e0bec2d07c5526b3f2bc7ee76")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a3c67d538765c4b5857a1439d5dbc8a12d2cc89")]
 [assembly: System.Reflection.AssemblyProductAttribute("GolfBookingAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GolfBookingAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Golf_Booking.Migrations
+namespace GolfBookingAPI.Migrations
 {
     [DbContext(typeof(BookingContext))]
     [Migration("20250306091020_InitialCreate")]

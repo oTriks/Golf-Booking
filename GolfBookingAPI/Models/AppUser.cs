@@ -1,4 +1,4 @@
-namespace Golf_Booking.Models
+namespace GolfBookingAPI.Models
 {
     public class AppUser
     {
@@ -7,7 +7,6 @@ namespace Golf_Booking.Models
         public required string Password { get; set; }
         public required string Role { get; set; }
 
-        // Optional: Club membership for players and personals
         public int? GolfClubId { get; set; }
         public GolfClub? GolfClub { get; set; }
     }

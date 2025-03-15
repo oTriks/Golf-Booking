@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GolfBooking.Shared")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a3c67d538765c4b5857a1439d5dbc8a12d2cc89")]
 [assembly: System.Reflection.AssemblyProductAttribute("GolfBooking.Shared")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GolfBooking.Shared")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

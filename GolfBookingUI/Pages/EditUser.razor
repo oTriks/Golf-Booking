@@ -1,0 +1,79 @@
+@page "/edituser/{UserId:int}"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@inject NavigationManager NavManager
+@using GolfBooking.Shared.Dtos
+
+<h3>Edit User</h3>
+
+@if (userUpdate == null)
+{
+    <p><em>Loading user data...</em></p>
+}
+else
+{
+    <EditForm Model="userUpdate" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div>
+            <label>Username:</label>
+            <InputText @bind-Value="userUpdate.Username" />
+        </div>
+        <div>
+            <label>Role:</label>
+            <InputText @bind-Value="userUpdate.Role" />
+        </div>
+        <button type="submit">Save Changes</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int UserId { get; set; }
+
+    private UserUpdate? userUpdate;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+
+        var response = await Http.GetAsync("api/User");
+        if (response.IsSuccessStatusCode)
+        {
+            var users = await response.Content.ReadFromJsonAsync<List<UserRead>>();
+            var selectedUser = users?.FirstOrDefault(u => u.Id == UserId);
+            if (selectedUser != null)
+            {
+                userUpdate = new UserUpdate
+                {
+                    Username = selectedUser.Username,
+                    Role = selectedUser.Role
+                };
+            }
+            else
+            {
+                message = "User not found.";
+            }
+        }
+        else
+        {
+            message = $"Error: {response.ReasonPhrase}";
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.PutAsJsonAsync($"api/User/{UserId}", userUpdate);
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/users");
+        }
+        else
+        {
+            message = $"Update failed: {response.ReasonPhrase}";
+        }
+    }
+}

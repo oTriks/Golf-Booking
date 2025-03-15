@@ -1,11 +1,11 @@
-namespace Golf_Booking.Models
+namespace GolfBookingAPI.Models
 {
     public class GolfCourse
     {
         public int Id { get; set; }
-        public required string Name { get; set; } // Mark as required
-        public int GolfClubId { get; set; } // Foreign Key
-        public required GolfClub GolfClub { get; set; } // Navigation property
+        public required string Name { get; set; }
+        public int GolfClubId { get; set; }
+        public required GolfClub GolfClub { get; set; }
         public string Type { get; set; } = "Course";
 
     }

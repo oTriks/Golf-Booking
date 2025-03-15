@@ -1,0 +1,86 @@
+@page "/editcourse/{CourseId:int}"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@inject NavigationManager NavManager
+@using GolfBooking.Shared.Dtos
+
+<h3>Edit Golf Course</h3>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p style="color:red;">@message</p>
+}
+else if (courseUpdate == null)
+{
+    <p><em>Loading course data...</em></p>
+}
+else
+{
+    <EditForm Model="courseUpdate" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <label>Name:</label>
+            <InputText @bind-Value="courseUpdate.Name" />
+        </div>
+        <div>
+            <label>Type:</label>
+            <InputText @bind-Value="courseUpdate.Type" />
+        </div>
+        <div>
+            <label>Golf Club ID:</label>
+            <InputNumber @bind-Value="courseUpdate.GolfClubId" />
+        </div>
+        <button type="submit">Save Changes</button>
+    </EditForm>
+}
+
+@code {
+    [Parameter]
+    public int CourseId { get; set; }
+
+    private CourseUpdate? courseUpdate;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.GetAsync("api/GolfCourse");
+        if (response.IsSuccessStatusCode)
+        {
+            var courses = await response.Content.ReadFromJsonAsync<List<CourseRead>>();
+            var selectedCourse = courses?.FirstOrDefault(c => c.Id == CourseId);
+            if (selectedCourse != null)
+            {
+                courseUpdate = new CourseUpdate
+                {
+                    Name = selectedCourse.Name,
+                    Type = selectedCourse.Type,
+                    GolfClubId = selectedCourse.GolfClubId
+                };
+            }
+            else
+            {
+                message = "Course not found.";
+            }
+        }
+        else
+        {
+            message = $"Error: {response.ReasonPhrase}";
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.PutAsJsonAsync($"api/GolfCourse/{CourseId}", courseUpdate);
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/courses");
+        }
+        else
+        {
+            message = $"Update failed: {response.ReasonPhrase}";
+        }
+    }
+}

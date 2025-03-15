@@ -1,9 +1,5 @@
-﻿@using GolfBookingUI.Models
-@using GolfBooking.Shared.Dtos
-
-@page "/"
-@inject GolfBookingUI.Services.GolfClubService ClubService
-
+@page "/clubs"
+@inject HttpClient Http
 
 <h3>Available Golf Clubs</h3>
 
@@ -20,16 +16,18 @@ else
     <ul>
         @foreach (var club in clubs)
         {
-            <li>@club.Name - @club.Location (@club.Type)</li>
+            <li>
+                <a href="@($"/club/{club.Id}")">@club.Name</a> - @club.Location (@club.Type)
+            </li>
         }
     </ul>
 }
 
 @code {
-    private List<ClubReadDto>? clubs;
+    private List<ClubRead>? clubs;
 
     protected override async Task OnInitializedAsync()
     {
-        clubs = await ClubService.GetClubsAsync();
+        clubs = await Http.GetFromJsonAsync<List<ClubRead>>("api/GolfClub");
     }
 }

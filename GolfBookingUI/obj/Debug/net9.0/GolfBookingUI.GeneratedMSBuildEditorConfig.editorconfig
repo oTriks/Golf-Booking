@@ -28,8 +28,36 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/BookCourse.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va0NvdXJzZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/Bookings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3MucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/ClubDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2x1YkRldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/Clubs.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2x1YnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/CourseAvailability.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291cnNlQXZhaWxhYmlsaXR5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/EditClub.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdENsdWIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/EditCourse.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdENvdXJzZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/EditUser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRWRpdFVzZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/Login.razor]
@@ -38,6 +66,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/Users.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVXNlcnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/oTriks/Desktop/Azure/GolfBookingUI/Pages/WaitingList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2FpdGluZ0xpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/oTriks/Desktop/Azure/GolfBookingUI/_Imports.razor]

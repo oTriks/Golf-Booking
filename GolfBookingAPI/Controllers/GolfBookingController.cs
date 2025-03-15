@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
-using Golf_Booking.Models;
-// using Golf_Booking.Dtos;
+using GolfBookingAPI.Models;
 using GolfBooking.Shared.Dtos;
 
 
@@ -21,29 +20,75 @@ public class GolfBookingController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
+    public async Task<ActionResult<IEnumerable<BookingRead>>> GetBookings()
     {
-        return await _context.Bookings.ToListAsync();
+        var bookings = await _context.Bookings
+            .Include(b => b.GolfCourse)
+            .Select(b => new BookingRead
+            {
+                Id = b.Id,
+                UserId = b.UserId,
+                TeeTime = b.TeeTime,
+                GolfCourseName = b.GolfCourse.Name,
+                CreatedAt = b.CreatedAt
+            })
+            .ToListAsync();
+
+        return bookings;
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Booking>> GetBooking(int id)
+    public async Task<ActionResult<BookingRead>> GetBooking(int id)
     {
-        var booking = await _context.Bookings.FindAsync(id);
-        if (booking == null) return NotFound();
+        var booking = await _context.Bookings
+            .Include(b => b.GolfCourse)
+            .Where(b => b.Id == id)
+            .Select(b => new BookingRead
+            {
+                Id = b.Id,
+                UserId = b.UserId,
+                TeeTime = b.TeeTime,
+                GolfCourseName = b.GolfCourse.Name,
+                CreatedAt = b.CreatedAt
+            })
+            .FirstOrDefaultAsync();
+
+        if (booking == null)
+            return NotFound();
+
         return booking;
     }
 
+
     [HttpPost]
-    public async Task<ActionResult<Booking>> CreateBooking(Booking booking)
+    public async Task<ActionResult<Booking>> CreateBooking([FromBody] BookingCreate bookingDto)
     {
-        var course = await _context.GolfCourses.FindAsync(booking.GolfCourseId);
-        if (course == null) return BadRequest("Invalid Course ID");
+        var course = await _context.GolfCourses.FindAsync(bookingDto.GolfCourseId);
+        if (course == null)
+            return BadRequest("Invalid Course ID");
+
+        int existingCount = await _context.Bookings
+            .CountAsync(b => b.GolfCourseId == bookingDto.GolfCourseId
+                             && b.TeeTime == bookingDto.TeeTime);
+        if (existingCount >= 4)
+            return BadRequest("This time slot is fully booked.");
+
+        var booking = new Booking
+        {
+            UserId = bookingDto.UserId,
+            TeeTime = bookingDto.TeeTime,
+            GolfCourseId = bookingDto.GolfCourseId,
+            GolfCourse = course,
+            CreatedAt = DateTime.UtcNow
+        };
 
         _context.Bookings.Add(booking);
         await _context.SaveChangesAsync();
+
         return CreatedAtAction(nameof(GetBooking), new { id = booking.Id }, booking);
     }
+
+
 
 
     [HttpPut("{id}")]
@@ -63,34 +108,105 @@ public class GolfBookingController : ControllerBase
         if (booking == null)
             return NotFound("Booking not found.");
 
-        // 1) Get the current user's role from the JWT
-        var userRole = User.FindFirst("role")?.Value;
+        var roleClaim = User.FindFirst(ClaimTypes.Role)?.Value;
+        var nameClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (string.IsNullOrEmpty(nameClaim))
+        {
+            return Unauthorized("User identifier not found.");
+        }
+        Console.WriteLine($"Role claim: {roleClaim}");
+        Console.WriteLine($"Name claim: {nameClaim}");
+        Console.WriteLine($"Booking.UserId: {booking.UserId}");
 
-        // Allow Admin or Personal to delete any booking
-        if (userRole == "Admin" || userRole == "Personal")
+        if (roleClaim == "Admin" || roleClaim == "Personal" ||
+            (roleClaim == "Player" && string.Equals(booking.UserId, nameClaim, StringComparison.OrdinalIgnoreCase)))
         {
             _context.Bookings.Remove(booking);
             await _context.SaveChangesAsync();
+
+            var waitingEntry = await _context.WaitingLists
+                .Where(w => w.GolfCourseId == booking.GolfCourseId && w.TeeTime == booking.TeeTime)
+                .OrderBy(w => w.CreatedAt)
+                .FirstOrDefaultAsync();
+
+            if (waitingEntry != null)
+            {
+                var course = await _context.GolfCourses.FindAsync(booking.GolfCourseId);
+
+                var newBooking = new Booking
+                {
+                    UserId = waitingEntry.UserId,
+                    TeeTime = waitingEntry.TeeTime,
+                    GolfCourseId = waitingEntry.GolfCourseId,
+                    GolfCourse = course,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                _context.Bookings.Add(newBooking);
+                _context.WaitingLists.Remove(waitingEntry);
+
+                await _context.SaveChangesAsync();
+            }
+
             return NoContent();
         }
 
-        // 2) If the user is a Player, only allow if they own the booking
-        var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-        if (claim == null)
-        {
-            return Forbid("User identifier not found.");
-        }
-        var currentUsername = claim.Value;
-        // Ensure that booking.UserId (the stored username) matches the current user's username
-        if (userRole == "Player" && booking.UserId == currentUsername)
-        {
-            _context.Bookings.Remove(booking);
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-
-        // 3) Otherwise, not authorized
-        return Forbid("You are not authorized to delete this booking.");
+        return StatusCode(StatusCodes.Status403Forbidden, "You are not authorized to delete this booking.");
     }
+
+    [HttpGet("availability/{courseId}/{teeTime}")]
+    public async Task<ActionResult<TimeSlotAvailability>> GetAvailabilityForSlot(int courseId, DateTime teeTime)
+    {
+        int count = await _context.Bookings
+            .CountAsync(b => b.GolfCourseId == courseId && b.TeeTime == teeTime);
+
+        var availability = new TimeSlotAvailability
+        {
+            Date = teeTime.Date,
+            TimeSlot = teeTime.ToString("HH:mm"),
+            AvailableSlots = Math.Max(0, 4 - count)
+        };
+
+        return availability;
+    }
+
+
+
+    [HttpGet("availability/{courseId}")]
+    public async Task<ActionResult<IEnumerable<TimeSlotAvailability>>> GetAvailability(int courseId)
+    {
+        var course = await _context.GolfCourses.FindAsync(courseId);
+        if (course == null)
+            return NotFound($"Course with ID {courseId} not found.");
+
+        var availabilityList = new List<TimeSlotAvailability>();
+
+        var timeSlots = new[] { "09:00", "11:00", "13:00", "15:00" };
+
+        var today = DateTime.Today;
+        for (int i = 0; i <= 7; i++)
+        {
+            var date = today.AddDays(i);
+            foreach (var slot in timeSlots)
+            {
+                var parsed = TimeSpan.Parse(slot);
+                var slotDateTime = date.Add(parsed);
+
+                var count = await _context.Bookings
+                    .Where(b => b.GolfCourseId == courseId && b.TeeTime == slotDateTime)
+                    .CountAsync();
+
+                availabilityList.Add(new TimeSlotAvailability
+                {
+                    Date = date,
+                    TimeSlot = slot,
+                    AvailableSlots = Math.Max(0, 4 - count)
+                });
+            }
+        }
+
+        return availabilityList;
+    }
+
 
 }

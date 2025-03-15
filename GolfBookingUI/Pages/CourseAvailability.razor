@@ -1,0 +1,47 @@
+@page "/courseavailability/{CourseId:int}"
+@using GolfBooking.Shared.Dtos
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<h3>Availability</h3>
+
+@if (availability == null)
+{
+    <p>Loading availability...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time Slot</th>
+                <th>Slots Left</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var slot in availability)
+            {
+                <tr>
+                    <td>@slot.Date.ToShortDateString()</td>
+                    <td>@slot.TimeSlot</td>
+                    <td>@slot.AvailableSlots</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter] public int CourseId { get; set; }
+    private List<TimeSlotAvailability>? availability;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Http.GetAsync($"api/GolfBooking/availability/{CourseId}");
+        if (response.IsSuccessStatusCode)
+        {
+            availability = await response.Content.ReadFromJsonAsync<List<TimeSlotAvailability>>();
+        }
+    }
+}

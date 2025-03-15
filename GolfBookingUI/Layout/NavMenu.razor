@@ -1,4 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inject GolfBookingUI.Services.AuthService AuthService
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">GolfBookingUI</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -9,22 +11,48 @@
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <!-- Removed Counter and Weather links -->
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/register">
-                <span class="oi oi-plus" aria-hidden="true"></span> Register
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="/login">
-                <span class="oi oi-account-login" aria-hidden="true"></span> Login
-            </NavLink>
-        </div>
+        @if (!AuthService.IsAuthenticated)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/login" Match="NavLinkMatch.All">
+                    <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Login
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/register">
+                    <span class="oi oi-plus" aria-hidden="true"></span> Register
+                </NavLink>
+            </div>
+        }
+        else
+        {
+            <div class="nav-item px-3">
+                <span class="nav-link">Welcome, @AuthService.Username</span>
+            </div>
+            <div class="nav-item px-3">
+                <button class="btn btn-link nav-link" @onclick="Logout">Logout</button>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/users">
+                    <span class="oi oi-account-users" aria-hidden="true"></span> Users
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/clubs">
+                    <span class="oi oi-account-users" aria-hidden="true"></span> Golfclubs
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/bookings">
+                    <span class="oi oi-account-users" aria-hidden="true"></span> Bookings
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="/waitingList">
+                    <span class="oi oi-account-users" aria-hidden="true"></span> Waiting List
+                </NavLink>
+            </div>
+        }
     </nav>
 </div>
 
@@ -32,8 +60,21 @@
     private bool collapseNavMenu = true;
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void ToggleNavMenu()
+    private void ToggleNavMenu() => collapseNavMenu = !collapseNavMenu;
+
+    private void Logout()
     {
-        collapseNavMenu = !collapseNavMenu;
+        AuthService.Logout();
+
+    }
+
+    protected override void OnInitialized()
+    {
+        AuthService.OnAuthStateChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        AuthService.OnAuthStateChanged -= StateHasChanged;
     }
 }

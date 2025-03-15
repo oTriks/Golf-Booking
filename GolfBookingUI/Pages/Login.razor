@@ -1,5 +1,6 @@
-@page "/login"
+@page "/"
 @inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
 @using GolfBooking.Shared.Dtos
 
 <h3>User Login</h3>
@@ -7,7 +8,6 @@
 <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
     <div>
         <label>Username:</label>
         <InputText @bind-Value="loginModel.Username" />
@@ -36,15 +36,16 @@
 
     private async Task HandleLogin()
     {
-        // Replace "api/User/login" with the correct API URL if needed
         var response = await Http.PostAsJsonAsync("api/User/login", loginModel);
 
         if (response.IsSuccessStatusCode)
         {
-            // Deserialize the token from the response (assumes it's returned as JSON { token: "..." })
             var result = await response.Content.ReadFromJsonAsync<TokenResult>();
             token = result?.token;
             message = "Login successful.";
+
+            AuthService.SetAuthenticationState(token, loginModel.Username);
+            StateHasChanged();
         }
         else
         {
@@ -52,7 +53,7 @@
         }
     }
 
-    // Define a class to receive the token response.
+
     private class TokenResult
     {
         public string? token { get; set; }

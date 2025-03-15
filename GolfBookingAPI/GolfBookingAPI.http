@@ -1,6 +1,6 @@
-@Golf_Booking_HostAddress = http://localhost:5210
+@GolfBookingAPI_HostAddress = http://localhost:5210
 
-GET {{Golf_Booking_HostAddress}}/weatherforecast/
+GET {{GolfBookingAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

@@ -1,0 +1,78 @@
+@page "/users"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@inject GolfBookingUI.Services.AuthService AuthService
+@using GolfBooking.Shared.Dtos
+
+<h3>Registered Users</h3>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p>@message</p>
+}
+else if (users == null)
+{
+    <p><em>Loading users...</em></p>
+}
+else if (!users.Any())
+{
+    <p>No users found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var user in users)
+        {
+            <li>
+                @user.Username - @user.Role
+                <button @onclick="() => EditUser(user.Id)">Edit</button>
+                <button @onclick="() => DeleteUser(user.Id)">Delete</button>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<UserRead>? users;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+
+        var response = await Http.GetAsync("api/User");
+        if (response.IsSuccessStatusCode)
+        {
+            users = await response.Content.ReadFromJsonAsync<List<UserRead>>();
+        }
+        else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized ||
+        response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+        {
+            message = "You are not authorized to view this page.";
+        }
+        else
+        {
+            message = $"Error: {response.ReasonPhrase}";
+        }
+    }
+
+    private async Task DeleteUser(int id)
+    {
+        AuthService.ApplyBearerToken(Http);
+
+        var response = await Http.DeleteAsync($"api/User/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            users = users?.Where(u => u.Id != id).ToList();
+        }
+        else
+        {
+            message = $"Delete failed: {response.ReasonPhrase}";
+        }
+    }
+
+    private void EditUser(int id)
+    {
+        NavManager.NavigateTo($"/edituser/{id}");
+    }
+}

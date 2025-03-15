@@ -1,4 +1,3 @@
-// File: GolfBooking.Shared/Dtos/UserRead.cs
 namespace GolfBooking.Shared.Dtos
 {
     public class UserRead

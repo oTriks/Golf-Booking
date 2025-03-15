@@ -24,7 +24,6 @@
             <option value="Personal">Personal</option>
         </InputSelect>
     </div>
-    @* Only show club selection if Role is not Admin *@
     @if (!string.Equals(registerModel.Role, "admin", StringComparison.OrdinalIgnoreCase))
     {
         <div>
@@ -51,7 +50,6 @@
 
     private async Task HandleRegister()
     {
-        // Replace "api/User/register" with the correct URL if needed
         var response = await Http.PostAsJsonAsync("api/User/register", registerModel);
 
         if (response.IsSuccessStatusCode)

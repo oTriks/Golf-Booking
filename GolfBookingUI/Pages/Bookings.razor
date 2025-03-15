@@ -1,0 +1,99 @@
+@page "/bookings"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@using GolfBooking.Shared.Dtos
+
+<h3>@(AuthService.Username == "admin" ? "All Bookings" : "My Bookings")</h3>
+
+@if (bookings == null)
+{
+    <p><em>Loading bookings...</em></p>
+}
+else if (!bookings.Any())
+{
+    <p>No bookings found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tee Time</th>
+                <th>Course</th>
+                <th>Booked On</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in bookings)
+            {
+                <tr>
+                    <td>@booking.TeeTime.ToString("g")</td>
+                    <td>@booking.GolfCourseName</td>
+                    <td>@booking.CreatedAt.ToString("g")</td>
+                    <td>
+
+                        @if (CanCancelBooking(booking))
+                        {
+                            <button class="btn btn-danger" @onclick="() => CancelBooking(booking.Id)">Unbook</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<BookingRead>? bookings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var allBookings = await Http.GetFromJsonAsync<List<BookingRead>>("api/GolfBooking");
+        if (AuthService.Username != "admin")
+        {
+            bookings = allBookings?.Where(b => b.UserId == AuthService.Username).ToList();
+        }
+        else
+        {
+            bookings = allBookings;
+        }
+    }
+
+    private bool CanCancelBooking(BookingRead booking)
+    {
+
+        var username = AuthService.Username;
+        if (string.IsNullOrEmpty(username))
+            return false;
+
+        if (username == "admin" || username == "personal")
+            return true;
+
+        return booking.UserId == username;
+    }
+
+    private async Task CancelBooking(int bookingId)
+    {
+        if (!await ConfirmCancellation("Are you sure you want to cancel this booking?"))
+            return;
+
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.DeleteAsync($"api/GolfBooking/{bookingId}");
+        if (response.IsSuccessStatusCode)
+        {
+            bookings = bookings?.Where(b => b.Id != bookingId).ToList();
+        }
+        else
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Cancel failed: {errorContent}");
+        }
+    }
+
+    private async Task<bool> ConfirmCancellation(string message)
+    {
+        return await Task.FromResult(true);
+    }
+}

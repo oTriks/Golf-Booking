@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Golf_Booking.Models;
+using GolfBookingAPI.Models;
 
 public class BookingContext : DbContext
 {
@@ -9,18 +9,16 @@ public class BookingContext : DbContext
     public DbSet<GolfCourse> GolfCourses { get; set; }
     public DbSet<Booking> Bookings { get; set; }
     public DbSet<AppUser> Users { get; set; }
+    public DbSet<WaitingList> WaitingLists { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // One Golf Club -> Many Courses
         modelBuilder.Entity<GolfCourse>()
             .HasOne(c => c.GolfClub)
             .WithMany(club => club.Courses)
             .HasForeignKey(c => c.GolfClubId)
-            .OnDelete(DeleteBehavior.Cascade); // This line configures cascade delete
+            .OnDelete(DeleteBehavior.Cascade);
 
-
-        // One Golf Course -> Many Bookings
         modelBuilder.Entity<Booking>()
             .HasOne(b => b.GolfCourse)
             .WithMany()
@@ -28,5 +26,4 @@ public class BookingContext : DbContext
 
         base.OnModelCreating(modelBuilder);
     }
-
 }

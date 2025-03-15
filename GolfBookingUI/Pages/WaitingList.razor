@@ -1,0 +1,47 @@
+@page "/waitinglist"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@using GolfBooking.Shared.Dtos
+
+<h3>My Waiting List</h3>
+
+@if (waitingEntries == null)
+{
+    <p><em>Loading waiting list entries...</em></p>
+}
+else if (!waitingEntries.Any())
+{
+    <p>You are not on any waiting list.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Tee Time</th>
+                <th>Joined On</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var entry in waitingEntries)
+            {
+                <tr>
+                    <td>@entry.GolfCourseId</td>
+                    <td>@entry.TeeTime.ToString("g")</td>
+                    <td>@entry.CreatedAt.ToString("g")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<WaitingListRead>? waitingEntries;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+        waitingEntries = await Http.GetFromJsonAsync<List<WaitingListRead>>("api/WaitingList/myentries");
+    }
+}

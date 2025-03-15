@@ -9,3 +9,4 @@ C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Sh
 C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\refint\GolfBooking.Shared.dll
 C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.pdb
 C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\ref\GolfBooking.Shared.dll
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.sourcelink.json
