@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using GolfBookingAPI.Models;
 using GolfBooking.Shared.Dtos;
+using Microsoft.Extensions.Logging;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -41,9 +42,7 @@ public class GolfClubController : ControllerBase
         return clubDtos;
     }
 
-
-
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Personal")]
     [HttpPost]
     public async Task<ActionResult<GolfClub>> CreateClub([FromBody] ClubCreate clubDto)
     {
@@ -61,7 +60,7 @@ public class GolfClubController : ControllerBase
 
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Personal")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteClub(int id)
     {
@@ -110,7 +109,7 @@ public class GolfClubController : ControllerBase
         return clubDto;
     }
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Personal")]
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateClub(int id, [FromBody] ClubUpdate clubDto)
     {

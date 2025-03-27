@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using GolfBookingAPI.Models;
 using GolfBooking.Shared.Dtos;
-
 
 [ApiController]
 [Route("api/[controller]")]
@@ -59,7 +59,6 @@ public class GolfBookingController : ControllerBase
         return booking;
     }
 
-
     [HttpPost]
     public async Task<ActionResult<Booking>> CreateBooking([FromBody] BookingCreate bookingDto)
     {
@@ -67,16 +66,25 @@ public class GolfBookingController : ControllerBase
         if (course == null)
             return BadRequest("Invalid Course ID");
 
+        DateTime teeTimeUtc = bookingDto.TeeTime.ToUniversalTime();
+
+        bool hasExistingBooking = await _context.Bookings.AnyAsync(b =>
+            b.GolfCourseId == bookingDto.GolfCourseId &&
+            b.TeeTime == teeTimeUtc &&
+            b.UserId == bookingDto.UserId);
+
+        if (hasExistingBooking)
+            return BadRequest("You already booked this tee time.");
+
         int existingCount = await _context.Bookings
-            .CountAsync(b => b.GolfCourseId == bookingDto.GolfCourseId
-                             && b.TeeTime == bookingDto.TeeTime);
+            .CountAsync(b => b.GolfCourseId == bookingDto.GolfCourseId && b.TeeTime == teeTimeUtc);
         if (existingCount >= 4)
             return BadRequest("This time slot is fully booked.");
 
         var booking = new Booking
         {
             UserId = bookingDto.UserId,
-            TeeTime = bookingDto.TeeTime,
+            TeeTime = teeTimeUtc,
             GolfCourseId = bookingDto.GolfCourseId,
             GolfCourse = course,
             CreatedAt = DateTime.UtcNow
@@ -88,13 +96,12 @@ public class GolfBookingController : ControllerBase
         return CreatedAtAction(nameof(GetBooking), new { id = booking.Id }, booking);
     }
 
-
-
-
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateBooking(int id, Booking booking)
     {
-        if (id != booking.Id) return BadRequest();
+        if (id != booking.Id)
+            return BadRequest();
+
         _context.Entry(booking).State = EntityState.Modified;
         await _context.SaveChangesAsync();
         return NoContent();
@@ -114,12 +121,9 @@ public class GolfBookingController : ControllerBase
         {
             return Unauthorized("User identifier not found.");
         }
-        Console.WriteLine($"Role claim: {roleClaim}");
-        Console.WriteLine($"Name claim: {nameClaim}");
-        Console.WriteLine($"Booking.UserId: {booking.UserId}");
 
         if (roleClaim == "Admin" || roleClaim == "Personal" ||
-            (roleClaim == "Player" && string.Equals(booking.UserId, nameClaim, StringComparison.OrdinalIgnoreCase)))
+            (roleClaim == "Player" && string.Equals(booking.UserId, nameClaim, System.StringComparison.OrdinalIgnoreCase)))
         {
             _context.Bookings.Remove(booking);
             await _context.SaveChangesAsync();
@@ -157,6 +161,7 @@ public class GolfBookingController : ControllerBase
     [HttpGet("availability/{courseId}/{teeTime}")]
     public async Task<ActionResult<TimeSlotAvailability>> GetAvailabilityForSlot(int courseId, DateTime teeTime)
     {
+
         int count = await _context.Bookings
             .CountAsync(b => b.GolfCourseId == courseId && b.TeeTime == teeTime);
 
@@ -169,8 +174,6 @@ public class GolfBookingController : ControllerBase
 
         return availability;
     }
-
-
 
     [HttpGet("availability/{courseId}")]
     public async Task<ActionResult<IEnumerable<TimeSlotAvailability>>> GetAvailability(int courseId)
@@ -192,9 +195,8 @@ public class GolfBookingController : ControllerBase
                 var parsed = TimeSpan.Parse(slot);
                 var slotDateTime = date.Add(parsed);
 
-                var count = await _context.Bookings
-                    .Where(b => b.GolfCourseId == courseId && b.TeeTime == slotDateTime)
-                    .CountAsync();
+                int count = await _context.Bookings
+                    .CountAsync(b => b.GolfCourseId == courseId && b.TeeTime == slotDateTime);
 
                 availabilityList.Add(new TimeSlotAvailability
                 {
@@ -207,6 +209,4 @@ public class GolfBookingController : ControllerBase
 
         return availabilityList;
     }
-
-
 }

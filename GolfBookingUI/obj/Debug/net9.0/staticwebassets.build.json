@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eXGYIvMBhIt9DoX2IgFVulQuB/bW1TdncTPOKZgUMLU=",
+  "Hash": "KBwpcImch5MJjqZMrou8YXL99Y+YjpiZBsBOZ6lIKDg=",
   "Source": "GolfBookingUI",
   "BasePath": "/",
   "Mode": "Root",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "ase3bt8bot",
-      "Integrity": "ZtOtxKN7AgLJPGBjKMR9SnHs1vRMNZxFo7Qe5t2hGig=",
+      "Fingerprint": "rl3t6kyvqu",
+      "Integrity": "gdKwaDP8gTarwr8vcKweYvZfiYh1juHDsoJGIz/CAIk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net9.0\\blazor.boot.json"
@@ -199,8 +199,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "mdlskjurk1",
-      "Integrity": "OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc=",
+      "Fingerprint": "2blds61f9d",
+      "Integrity": "HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBooking.Shared\\bin\\Debug\\net9.0\\GolfBooking.Shared.pdb"
@@ -220,8 +220,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "bl82bywvwx",
-      "Integrity": "/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM=",
+      "Fingerprint": "1o64g5iwe9",
+      "Integrity": "wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\webcil\\GolfBooking.Shared.wasm"
@@ -241,8 +241,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "udst7i9zrd",
-      "Integrity": "DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE=",
+      "Fingerprint": "bjo1r7zyol",
+      "Integrity": "iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net9.0\\GolfBookingUI.pdb"
@@ -262,8 +262,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "jzkpr32uab",
-      "Integrity": "gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI=",
+      "Fingerprint": "tadvs03k2h",
+      "Integrity": "FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\webcil\\GolfBookingUI.wasm"
@@ -6758,12 +6758,12 @@
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\System.Net.Primitives.wasm"
     },
     {
-      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-mdlskjurk1.gz",
+      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-2blds61f9d.gz",
       "SourceId": "GolfBookingUI",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "_framework/GolfBooking.Shared#[.{fingerprint=mdlskjurk1}]!.pdb.gz",
+      "RelativePath": "_framework/GolfBooking.Shared#[.{fingerprint=2blds61f9d}]!.pdb.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -6772,8 +6772,8 @@
       "RelatedAsset": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBooking.Shared.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "6ec2scxd0p",
-      "Integrity": "PkfNAMrBe25L/dFbfJ4L4BtJrVFLTJwnz7ZC5iiaRWI=",
+      "Fingerprint": "0rbrtmxoou",
+      "Integrity": "xCZEaljUO0a4T+RyMf0Mh9KKvlXWEgeqcKk/28lfdB4=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBooking.Shared.pdb"
@@ -7388,12 +7388,12 @@
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\System.Net.Http.wasm"
     },
     {
-      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-bl82bywvwx.gz",
+      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-1o64g5iwe9.gz",
       "SourceId": "GolfBookingUI",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "_framework/GolfBooking.Shared#[.{fingerprint=bl82bywvwx}]!.wasm.gz",
+      "RelativePath": "_framework/GolfBooking.Shared#[.{fingerprint=1o64g5iwe9}]!.wasm.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -7402,8 +7402,8 @@
       "RelatedAsset": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBooking.Shared.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "u4utcwjmwo",
-      "Integrity": "zvnkA4pffXBZTuJ78OMXhl5mJGRWQglFou/RaOES2BU=",
+      "Fingerprint": "5ol67k6k76",
+      "Integrity": "NUpDpcX/W5gB9t1G7ThV+xi3A2Z8+u5pm3tAXfU2bWA=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBooking.Shared.wasm"
@@ -7535,7 +7535,7 @@
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\System.Runtime.wasm"
     },
     {
-      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\lcgofg70e4-ase3bt8bot.gz",
+      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\lcgofg70e4-rl3t6kyvqu.gz",
       "SourceId": "GolfBookingUI",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\",
@@ -7549,8 +7549,8 @@
       "RelatedAsset": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\blazor.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "7vnajbaw4a",
-      "Integrity": "Uza+ZNV+va9rnxF1M499FTAVEsRQ3b+SojlAxHjJKYM=",
+      "Fingerprint": "tygwo933ns",
+      "Integrity": "5emsBUq+eSl3wYSzWyDIZFAS3x9PUdRckOI7aA2sjmk=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\blazor.boot.json"
@@ -8165,12 +8165,12 @@
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\System.Resources.Writer.wasm"
     },
     {
-      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-jzkpr32uab.gz",
+      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-tadvs03k2h.gz",
       "SourceId": "GolfBookingUI",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "_framework/GolfBookingUI#[.{fingerprint=jzkpr32uab}]!.wasm.gz",
+      "RelativePath": "_framework/GolfBookingUI#[.{fingerprint=tadvs03k2h}]!.wasm.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -8179,8 +8179,8 @@
       "RelatedAsset": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "wdjk8aa2zp",
-      "Integrity": "JC9QpQtjiGddBsb5fL1KulwZhq1ir6ZJXV07MslSiqc=",
+      "Fingerprint": "p9n6gpj4si",
+      "Integrity": "swAcnAlc7vu+TJlfqHQ6yD8WCc8avqHarP0kbFb7vs8=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.wasm"
@@ -8249,12 +8249,12 @@
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\Microsoft.JSInterop.WebAssembly.wasm"
     },
     {
-      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-udst7i9zrd.gz",
+      "Identity": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-bjo1r7zyol.gz",
       "SourceId": "GolfBookingUI",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "/",
-      "RelativePath": "_framework/GolfBookingUI#[.{fingerprint=udst7i9zrd}]!.pdb.gz",
+      "RelativePath": "_framework/GolfBookingUI#[.{fingerprint=bjo1r7zyol}]!.pdb.gz",
       "AssetKind": "Build",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -8263,8 +8263,8 @@
       "RelatedAsset": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "x44i5zubcg",
-      "Integrity": "cRauZ9qcq0hLbgNUQTXGmgFDDKbTfOdwv+lxpd6qJb0=",
+      "Fingerprint": "m5hmgqxc83",
+      "Integrity": "WsieJ2cnvQtU3SqyWMIy5vjuIY9le3yeFokLqf1GZg0=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.pdb"
@@ -10789,11 +10789,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ZtOtxKN7AgLJPGBjKMR9SnHs1vRMNZxFo7Qe5t2hGig=\""
+          "Value": "\"gdKwaDP8gTarwr8vcKweYvZfiYh1juHDsoJGIz/CAIk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
+          "Value": "Thu, 27 Mar 2025 09:31:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10803,18 +10803,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ZtOtxKN7AgLJPGBjKMR9SnHs1vRMNZxFo7Qe5t2hGig="
+          "Value": "sha256-gdKwaDP8gTarwr8vcKweYvZfiYh1juHDsoJGIz/CAIk="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\lcgofg70e4-ase3bt8bot.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\lcgofg70e4-rl3t6kyvqu.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000080398778"
+          "Quality": "0.000080392314"
         }
       ],
       "ResponseHeaders": [
@@ -10824,15 +10824,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12437"
+          "Value": "12438"
         },
         {
           "Name": "ETag",
-          "Value": "\"Uza+ZNV+va9rnxF1M499FTAVEsRQ3b+SojlAxHjJKYM=\""
+          "Value": "\"5emsBUq+eSl3wYSzWyDIZFAS3x9PUdRckOI7aA2sjmk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:02:24 GMT"
+          "Value": "Thu, 27 Mar 2025 09:29:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10852,19 +10852,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"ZtOtxKN7AgLJPGBjKMR9SnHs1vRMNZxFo7Qe5t2hGig=\""
+          "Value": "W/\"gdKwaDP8gTarwr8vcKweYvZfiYh1juHDsoJGIz/CAIk=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ZtOtxKN7AgLJPGBjKMR9SnHs1vRMNZxFo7Qe5t2hGig="
+          "Value": "sha256-gdKwaDP8gTarwr8vcKweYvZfiYh1juHDsoJGIz/CAIk="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\lcgofg70e4-ase3bt8bot.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\lcgofg70e4-rl3t6kyvqu.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10873,7 +10873,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "12437"
+          "Value": "12438"
         },
         {
           "Name": "Content-Type",
@@ -10881,11 +10881,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Uza+ZNV+va9rnxF1M499FTAVEsRQ3b+SojlAxHjJKYM=\""
+          "Value": "\"5emsBUq+eSl3wYSzWyDIZFAS3x9PUdRckOI7aA2sjmk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:02:24 GMT"
+          "Value": "Thu, 27 Mar 2025 09:29:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10903,7 +10903,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Uza+ZNV+va9rnxF1M499FTAVEsRQ3b+SojlAxHjJKYM="
+          "Value": "sha256-5emsBUq+eSl3wYSzWyDIZFAS3x9PUdRckOI7aA2sjmk="
         }
       ]
     },
@@ -12833,7 +12833,7 @@
       ]
     },
     {
-      "Route": "_framework/GolfBooking.Shared.bl82bywvwx.wasm",
+      "Route": "_framework/GolfBooking.Shared.1o64g5iwe9.wasm",
       "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBooking.Shared.wasm",
       "Selectors": [],
       "ResponseHeaders": [
@@ -12851,11 +12851,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM=\""
+          "Value": "\"wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12865,7 +12865,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bl82bywvwx"
+          "Value": "1o64g5iwe9"
         },
         {
           "Name": "label",
@@ -12873,18 +12873,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM="
+          "Value": "sha256-wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBooking.Shared.bl82bywvwx.wasm",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-bl82bywvwx.gz",
+      "Route": "_framework/GolfBooking.Shared.1o64g5iwe9.wasm",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-1o64g5iwe9.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000209161263"
+          "Quality": "0.000208594076"
         }
       ],
       "ResponseHeaders": [
@@ -12894,15 +12894,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4780"
+          "Value": "4793"
         },
         {
           "Name": "ETag",
-          "Value": "\"zvnkA4pffXBZTuJ78OMXhl5mJGRWQglFou/RaOES2BU=\""
+          "Value": "\"NUpDpcX/W5gB9t1G7ThV+xi3A2Z8+u5pm3tAXfU2bWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12922,13 +12922,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM=\""
+          "Value": "W/\"wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bl82bywvwx"
+          "Value": "1o64g5iwe9"
         },
         {
           "Name": "label",
@@ -12936,13 +12936,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM="
+          "Value": "sha256-wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBooking.Shared.bl82bywvwx.wasm.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-bl82bywvwx.gz",
+      "Route": "_framework/GolfBooking.Shared.1o64g5iwe9.wasm.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-1o64g5iwe9.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -12951,7 +12951,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4780"
+          "Value": "4793"
         },
         {
           "Name": "Content-Type",
@@ -12959,11 +12959,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zvnkA4pffXBZTuJ78OMXhl5mJGRWQglFou/RaOES2BU=\""
+          "Value": "\"NUpDpcX/W5gB9t1G7ThV+xi3A2Z8+u5pm3tAXfU2bWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -12981,7 +12981,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bl82bywvwx"
+          "Value": "1o64g5iwe9"
         },
         {
           "Name": "label",
@@ -12989,12 +12989,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-zvnkA4pffXBZTuJ78OMXhl5mJGRWQglFou/RaOES2BU="
+          "Value": "sha256-NUpDpcX/W5gB9t1G7ThV+xi3A2Z8+u5pm3tAXfU2bWA="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBooking.Shared.mdlskjurk1.pdb",
+      "Route": "_framework/GolfBooking.Shared.2blds61f9d.pdb",
       "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBooking.Shared.pdb",
       "Selectors": [],
       "ResponseHeaders": [
@@ -13004,7 +13004,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "14716"
+          "Value": "14704"
         },
         {
           "Name": "Content-Type",
@@ -13012,11 +13012,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc=\""
+          "Value": "\"HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:18:40 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13026,7 +13026,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mdlskjurk1"
+          "Value": "2blds61f9d"
         },
         {
           "Name": "label",
@@ -13034,18 +13034,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc="
+          "Value": "sha256-HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBooking.Shared.mdlskjurk1.pdb",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-mdlskjurk1.gz",
+      "Route": "_framework/GolfBooking.Shared.2blds61f9d.pdb",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-2blds61f9d.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000122594091"
+          "Quality": "0.000122564040"
         }
       ],
       "ResponseHeaders": [
@@ -13055,15 +13055,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8156"
+          "Value": "8158"
         },
         {
           "Name": "ETag",
-          "Value": "\"PkfNAMrBe25L/dFbfJ4L4BtJrVFLTJwnz7ZC5iiaRWI=\""
+          "Value": "\"xCZEaljUO0a4T+RyMf0Mh9KKvlXWEgeqcKk/28lfdB4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13083,13 +13083,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc=\""
+          "Value": "W/\"HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mdlskjurk1"
+          "Value": "2blds61f9d"
         },
         {
           "Name": "label",
@@ -13097,13 +13097,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc="
+          "Value": "sha256-HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBooking.Shared.mdlskjurk1.pdb.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-mdlskjurk1.gz",
+      "Route": "_framework/GolfBooking.Shared.2blds61f9d.pdb.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-2blds61f9d.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -13112,7 +13112,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8156"
+          "Value": "8158"
         },
         {
           "Name": "Content-Type",
@@ -13120,11 +13120,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"PkfNAMrBe25L/dFbfJ4L4BtJrVFLTJwnz7ZC5iiaRWI=\""
+          "Value": "\"xCZEaljUO0a4T+RyMf0Mh9KKvlXWEgeqcKk/28lfdB4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13142,7 +13142,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mdlskjurk1"
+          "Value": "2blds61f9d"
         },
         {
           "Name": "label",
@@ -13150,7 +13150,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-PkfNAMrBe25L/dFbfJ4L4BtJrVFLTJwnz7ZC5iiaRWI="
+          "Value": "sha256-xCZEaljUO0a4T+RyMf0Mh9KKvlXWEgeqcKk/28lfdB4="
         }
       ]
     },
@@ -13165,7 +13165,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "14716"
+          "Value": "14704"
         },
         {
           "Name": "Content-Type",
@@ -13173,11 +13173,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc=\""
+          "Value": "\"HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:18:40 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13187,18 +13187,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc="
+          "Value": "sha256-HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24="
         }
       ]
     },
     {
       "Route": "_framework/GolfBooking.Shared.pdb",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-mdlskjurk1.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-2blds61f9d.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000122594091"
+          "Quality": "0.000122564040"
         }
       ],
       "ResponseHeaders": [
@@ -13208,15 +13208,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8156"
+          "Value": "8158"
         },
         {
           "Name": "ETag",
-          "Value": "\"PkfNAMrBe25L/dFbfJ4L4BtJrVFLTJwnz7ZC5iiaRWI=\""
+          "Value": "\"xCZEaljUO0a4T+RyMf0Mh9KKvlXWEgeqcKk/28lfdB4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13236,19 +13236,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc=\""
+          "Value": "W/\"HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-OrvLIKMzJrYsr6BK/jGhiggJS9lDJzXY9BOL+n1Ruvc="
+          "Value": "sha256-HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24="
         }
       ]
     },
     {
       "Route": "_framework/GolfBooking.Shared.pdb.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-mdlskjurk1.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\gevibhy3rq-2blds61f9d.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -13257,7 +13257,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8156"
+          "Value": "8158"
         },
         {
           "Name": "Content-Type",
@@ -13265,11 +13265,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"PkfNAMrBe25L/dFbfJ4L4BtJrVFLTJwnz7ZC5iiaRWI=\""
+          "Value": "\"xCZEaljUO0a4T+RyMf0Mh9KKvlXWEgeqcKk/28lfdB4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13287,7 +13287,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-PkfNAMrBe25L/dFbfJ4L4BtJrVFLTJwnz7ZC5iiaRWI="
+          "Value": "sha256-xCZEaljUO0a4T+RyMf0Mh9KKvlXWEgeqcKk/28lfdB4="
         }
       ]
     },
@@ -13310,11 +13310,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM=\""
+          "Value": "\"wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13324,18 +13324,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM="
+          "Value": "sha256-wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI="
         }
       ]
     },
     {
       "Route": "_framework/GolfBooking.Shared.wasm",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-bl82bywvwx.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-1o64g5iwe9.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000209161263"
+          "Quality": "0.000208594076"
         }
       ],
       "ResponseHeaders": [
@@ -13345,15 +13345,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4780"
+          "Value": "4793"
         },
         {
           "Name": "ETag",
-          "Value": "\"zvnkA4pffXBZTuJ78OMXhl5mJGRWQglFou/RaOES2BU=\""
+          "Value": "\"NUpDpcX/W5gB9t1G7ThV+xi3A2Z8+u5pm3tAXfU2bWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13373,19 +13373,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM=\""
+          "Value": "W/\"wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-/wplZisXiNBsputH00+xVtP3lXTspsDvVp6IwV58GIM="
+          "Value": "sha256-wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI="
         }
       ]
     },
     {
       "Route": "_framework/GolfBooking.Shared.wasm.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-bl82bywvwx.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\kpx7f7jpxa-1o64g5iwe9.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -13394,7 +13394,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "4780"
+          "Value": "4793"
         },
         {
           "Name": "Content-Type",
@@ -13402,11 +13402,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"zvnkA4pffXBZTuJ78OMXhl5mJGRWQglFou/RaOES2BU=\""
+          "Value": "\"NUpDpcX/W5gB9t1G7ThV+xi3A2Z8+u5pm3tAXfU2bWA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 13 Mar 2025 13:41:18 GMT"
+          "Value": "Wed, 26 Mar 2025 21:38:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13424,173 +13424,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-zvnkA4pffXBZTuJ78OMXhl5mJGRWQglFou/RaOES2BU="
+          "Value": "sha256-NUpDpcX/W5gB9t1G7ThV+xi3A2Z8+u5pm3tAXfU2bWA="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBookingUI.jzkpr32uab.wasm",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.wasm",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "71445"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "jzkpr32uab"
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/GolfBookingUI.wasm"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/GolfBookingUI.jzkpr32uab.wasm",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-jzkpr32uab.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000036627353"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "27301"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JC9QpQtjiGddBsb5fL1KulwZhq1ir6ZJXV07MslSiqc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "jzkpr32uab"
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/GolfBookingUI.wasm"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/GolfBookingUI.jzkpr32uab.wasm.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-jzkpr32uab.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "27301"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/wasm"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JC9QpQtjiGddBsb5fL1KulwZhq1ir6ZJXV07MslSiqc=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "jzkpr32uab"
-        },
-        {
-          "Name": "label",
-          "Value": "_framework/GolfBookingUI.wasm.gz"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-JC9QpQtjiGddBsb5fL1KulwZhq1ir6ZJXV07MslSiqc="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/GolfBookingUI.pdb",
+      "Route": "_framework/GolfBookingUI.bjo1r7zyol.pdb",
       "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.pdb",
       "Selectors": [],
       "ResponseHeaders": [
@@ -13600,7 +13439,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "58160"
+          "Value": "70052"
         },
         {
           "Name": "Content-Type",
@@ -13608,148 +13447,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE=\""
+          "Value": "\"iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:29 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/GolfBookingUI.pdb",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-udst7i9zrd.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000021978988"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "45497"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cRauZ9qcq0hLbgNUQTXGmgFDDKbTfOdwv+lxpd6qJb0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/GolfBookingUI.pdb.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-udst7i9zrd.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "45497"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"cRauZ9qcq0hLbgNUQTXGmgFDDKbTfOdwv+lxpd6qJb0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-cRauZ9qcq0hLbgNUQTXGmgFDDKbTfOdwv+lxpd6qJb0="
-        }
-      ]
-    },
-    {
-      "Route": "_framework/GolfBookingUI.udst7i9zrd.pdb",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.pdb",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "58160"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "application/octet-stream"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:29 GMT"
+          "Value": "Thu, 27 Mar 2025 09:29:24 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13759,7 +13461,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "udst7i9zrd"
+          "Value": "bjo1r7zyol"
         },
         {
           "Name": "label",
@@ -13767,18 +13469,18 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE="
+          "Value": "sha256-iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBookingUI.udst7i9zrd.pdb",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-udst7i9zrd.gz",
+      "Route": "_framework/GolfBookingUI.bjo1r7zyol.pdb",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-bjo1r7zyol.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000021978988"
+          "Quality": "0.000018195713"
         }
       ],
       "ResponseHeaders": [
@@ -13788,15 +13490,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45497"
+          "Value": "54957"
         },
         {
           "Name": "ETag",
-          "Value": "\"cRauZ9qcq0hLbgNUQTXGmgFDDKbTfOdwv+lxpd6qJb0=\""
+          "Value": "\"WsieJ2cnvQtU3SqyWMIy5vjuIY9le3yeFokLqf1GZg0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
+          "Value": "Thu, 27 Mar 2025 09:29:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13816,13 +13518,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE=\""
+          "Value": "W/\"iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "udst7i9zrd"
+          "Value": "bjo1r7zyol"
         },
         {
           "Name": "label",
@@ -13830,13 +13532,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-DoxeSJZziZ/vhplMBJBPTDEFljK68BWeGO+qKHOvRwE="
+          "Value": "sha256-iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q="
         }
       ]
     },
     {
-      "Route": "_framework/GolfBookingUI.udst7i9zrd.pdb.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-udst7i9zrd.gz",
+      "Route": "_framework/GolfBookingUI.bjo1r7zyol.pdb.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-bjo1r7zyol.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -13845,7 +13547,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45497"
+          "Value": "54957"
         },
         {
           "Name": "Content-Type",
@@ -13853,11 +13555,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"cRauZ9qcq0hLbgNUQTXGmgFDDKbTfOdwv+lxpd6qJb0=\""
+          "Value": "\"WsieJ2cnvQtU3SqyWMIy5vjuIY9le3yeFokLqf1GZg0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
+          "Value": "Thu, 27 Mar 2025 09:29:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13875,7 +13577,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "udst7i9zrd"
+          "Value": "bjo1r7zyol"
         },
         {
           "Name": "label",
@@ -13883,7 +13585,305 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-cRauZ9qcq0hLbgNUQTXGmgFDDKbTfOdwv+lxpd6qJb0="
+          "Value": "sha256-WsieJ2cnvQtU3SqyWMIy5vjuIY9le3yeFokLqf1GZg0="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/GolfBookingUI.pdb",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.pdb",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "70052"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 09:29:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/GolfBookingUI.pdb",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-bjo1r7zyol.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000018195713"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "54957"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WsieJ2cnvQtU3SqyWMIy5vjuIY9le3yeFokLqf1GZg0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 09:29:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/GolfBookingUI.pdb.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\qarrqvpywt-bjo1r7zyol.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "54957"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/octet-stream"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WsieJ2cnvQtU3SqyWMIy5vjuIY9le3yeFokLqf1GZg0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 09:29:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WsieJ2cnvQtU3SqyWMIy5vjuIY9le3yeFokLqf1GZg0="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/GolfBookingUI.tadvs03k2h.wasm",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\bin\\Debug\\net9.0\\wwwroot\\_framework\\GolfBookingUI.wasm",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "96533"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 08:22:11 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tadvs03k2h"
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/GolfBookingUI.wasm"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/GolfBookingUI.tadvs03k2h.wasm",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-tadvs03k2h.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000029904306"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33439"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"swAcnAlc7vu+TJlfqHQ6yD8WCc8avqHarP0kbFb7vs8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 08:22:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tadvs03k2h"
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/GolfBookingUI.wasm"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA="
+        }
+      ]
+    },
+    {
+      "Route": "_framework/GolfBookingUI.tadvs03k2h.wasm.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-tadvs03k2h.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "33439"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/wasm"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"swAcnAlc7vu+TJlfqHQ6yD8WCc8avqHarP0kbFb7vs8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 27 Mar 2025 08:22:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tadvs03k2h"
+        },
+        {
+          "Name": "label",
+          "Value": "_framework/GolfBookingUI.wasm.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-swAcnAlc7vu+TJlfqHQ6yD8WCc8avqHarP0kbFb7vs8="
         }
       ]
     },
@@ -13898,7 +13898,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "71445"
+          "Value": "96533"
         },
         {
           "Name": "Content-Type",
@@ -13906,11 +13906,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI=\""
+          "Value": "\"FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:29 GMT"
+          "Value": "Thu, 27 Mar 2025 08:22:11 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13920,18 +13920,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI="
+          "Value": "sha256-FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA="
         }
       ]
     },
     {
       "Route": "_framework/GolfBookingUI.wasm",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-jzkpr32uab.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-tadvs03k2h.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000036627353"
+          "Quality": "0.000029904306"
         }
       ],
       "ResponseHeaders": [
@@ -13941,15 +13941,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "27301"
+          "Value": "33439"
         },
         {
           "Name": "ETag",
-          "Value": "\"JC9QpQtjiGddBsb5fL1KulwZhq1ir6ZJXV07MslSiqc=\""
+          "Value": "\"swAcnAlc7vu+TJlfqHQ6yD8WCc8avqHarP0kbFb7vs8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
+          "Value": "Thu, 27 Mar 2025 08:22:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13969,19 +13969,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI=\""
+          "Value": "W/\"FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-gUJ6w1vlhRG5/IS+bcgfkpF9TYxm55emavWcFDN8/BI="
+          "Value": "sha256-FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA="
         }
       ]
     },
     {
       "Route": "_framework/GolfBookingUI.wasm.gz",
-      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-jzkpr32uab.gz",
+      "AssetFile": "C:\\Users\\oTriks\\Desktop\\Azure\\GolfBookingUI\\obj\\Debug\\net9.0\\compressed\\pto91300fx-tadvs03k2h.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -13990,7 +13990,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "27301"
+          "Value": "33439"
         },
         {
           "Name": "Content-Type",
@@ -13998,11 +13998,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JC9QpQtjiGddBsb5fL1KulwZhq1ir6ZJXV07MslSiqc=\""
+          "Value": "\"swAcnAlc7vu+TJlfqHQ6yD8WCc8avqHarP0kbFb7vs8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 15 Mar 2025 10:13:30 GMT"
+          "Value": "Thu, 27 Mar 2025 08:22:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14020,7 +14020,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JC9QpQtjiGddBsb5fL1KulwZhq1ir6ZJXV07MslSiqc="
+          "Value": "sha256-swAcnAlc7vu+TJlfqHQ6yD8WCc8avqHarP0kbFb7vs8="
         }
       ]
     },

@@ -4,50 +4,66 @@
 @inject GolfBookingUI.Services.AuthService AuthService
 @using GolfBooking.Shared.Dtos
 
-<h3>Book Course</h3>
+<div class="container my-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Book Course</h3>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div class="alert alert-danger">@message</div>
+            }
+            else if (availableDates == null || availableTimeSlots == null)
+            {
+                <p><em>Loading booking options...</em></p>
+            }
+            else
+            {
+                <EditForm Model="bookingModel" OnValidSubmit="HandleBooking">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
 
-@if (!string.IsNullOrEmpty(message))
-{
-    <p style="color:red;">@message</p>
-}
-else if (availableDates == null || availableTimeSlots == null)
-{
-    <p><em>Loading booking options...</em></p>
-}
-else
-{
-    <div>
-        <div>
-            <label>Date:</label>
-            <select @bind="selectedDate">
-                @foreach (var date in availableDates)
-                {
-                    <option value="@date">@date.ToShortDateString()</option>
-                }
-            </select>
+                    <div class="mb-3">
+                        <label class="form-label">Date:</label>
+                        <select class="form-select" @bind="selectedDate">
+                            @foreach (var date in availableDates)
+                            {
+                                <option value="@date">@date.ToShortDateString()</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Time Slot:</label>
+                        <select class="form-select" @bind="selectedTimeSlot">
+                            @foreach (var slot in availableTimeSlots)
+                            {
+                                <option value="@slot">@slot</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="fw-bold">Selected Booking Time: @selectedDate.Add(TimeSpan.Parse(selectedTimeSlot))</p>
+                    </div>
+
+                    @if (!slotFullyBooked)
+                    {
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            This slot is fully booked.
+                        </div>
+                        <button type="button" class="btn btn-warning" @onclick="JoinWaitingList">Join Waiting List</button>
+                    }
+                </EditForm>
+            }
         </div>
-        <div>
-            <label>Time Slot:</label>
-            <select @bind="selectedTimeSlot">
-                @foreach (var slot in availableTimeSlots)
-                {
-                    <option value="@slot">@slot</option>
-                }
-            </select>
-        </div>
-        <p>Selected Booking Time: @selectedDate.Add(TimeSpan.Parse(selectedTimeSlot))</p>
     </div>
-
-    @if (!slotFullyBooked)
-    {
-        <button class="btn btn-primary" @onclick="HandleBooking">Book Now</button>
-    }
-    else
-    {
-        <p>This slot is fully booked.</p>
-        <button class="btn btn-warning" @onclick="JoinWaitingList">Join Waiting List</button>
-    }
-}
+</div>
 
 @code {
     [Parameter]
@@ -92,7 +108,7 @@ else
         bookingModel.UserId = AuthService.Username ?? string.Empty;
 
         availableDates = new List<DateTime>();
-        var today = DateTime.Today;
+        var today = DateTime.UtcNow.Date;
         for (int i = 0; i <= 7; i++)
         {
             availableDates.Add(today.AddDays(i));
@@ -108,6 +124,7 @@ else
     private async Task CheckAvailability()
     {
         var currentTeeTime = selectedDate.Add(TimeSpan.Parse(selectedTimeSlot));
+        Console.WriteLine($"Client: Checking availability for {currentTeeTime:o}");
 
         var availability = await
         Http.GetFromJsonAsync<TimeSlotAvailability>($"api/GolfBooking/availability/{CourseId}/{currentTeeTime:o}");
@@ -115,10 +132,11 @@ else
         if (currentTeeTime == selectedDate.Add(TimeSpan.Parse(selectedTimeSlot)))
         {
             slotFullyBooked = availability?.AvailableSlots == 0;
+            Console.WriteLine($"Client: slotFullyBooked is now {slotFullyBooked}");
             await InvokeAsync(StateHasChanged);
         }
-    }
 
+    }
 
     private async Task HandleBooking()
     {
@@ -149,9 +167,9 @@ else
     {
         var waitingDto = new WaitingListCreate
         {
-            UserId = AuthService.Username,
+            UserId = AuthService.Username ?? string.Empty,
             GolfCourseId = CourseId,
-            TeeTime = selectedDate.Add(TimeSpan.Parse(selectedTimeSlot))
+            TeeTime = selectedDate.Add(TimeSpan.Parse(selectedTimeSlot)).ToUniversalTime()
         };
 
         AuthService.ApplyBearerToken(Http);
@@ -162,7 +180,9 @@ else
         }
         else
         {
-            message = "Unable to join the waiting list.";
+            var errorContent = await response.Content.ReadAsStringAsync();
+            message = $"Unable to join the waiting list: {errorContent}";
         }
     }
+
 }

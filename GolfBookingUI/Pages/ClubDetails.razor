@@ -4,51 +4,70 @@
 @inject NavigationManager NavManager
 @inject GolfBookingUI.Services.AuthService AuthService
 
-<h3>Club Details: @club?.Name</h3>
-
-@if (club == null)
-{
-    <p><em>Loading club details...</em></p>
-}
-else
-{
-    <p><strong>Location:</strong> @club.Location</p>
-    <p><strong>Type:</strong> @club.Type</p>
-
-    @if (AuthService.IsAuthenticated && AuthService.Username == "admin")
+<div class="container my-4">
+    @if (club == null)
     {
-        <button @onclick="EditClub">Edit Club</button>
-        <button @onclick="DeleteClub">Delete Club</button>
-    }
-
-    <h4>Courses:</h4>
-    @if (club.Courses == null || !club.Courses.Any())
-    {
-        <p>No courses found for this club.</p>
+        <p><em>Loading club details...</em></p>
     }
     else
     {
-        <ul>
-            @foreach (var course in club.Courses)
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="mb-0">@club.Name</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Location:</strong> @club.Location</p>
+                <p><strong>Type:</strong> @club.Type</p>
+            </div>
+            @if (AuthService.IsAuthenticated && (AuthService.Role == "Admin" || AuthService.Role == "Personal"))
             {
-                <li>
-                    @course.Name (@course.Type)
-                    @if (AuthService.IsAuthenticated && AuthService.Username == "admin")
-                    {
-                        <button @onclick="() => EditCourse(course.Id)">Edit Course</button>
-                        <button @onclick="() => DeleteCourse(course.Id)">Delete Course</button>
-                    }
-                    @if (AuthService.IsAuthenticated)
-                    {
-                        <button @onclick='() => NavManager.NavigateTo($"/bookcourse/{course.Id}")'>Book Now</button>
-                        <button @onclick='() => NavManager.NavigateTo($"/courseavailability/{course.Id}")'>View Availability</button>
-
-                    }
-                </li>
+                <div class="card-footer">
+                    <button class="btn btn-primary me-2" @onclick="EditClub">Edit Club</button>
+                    <button class="btn btn-danger me-2" @onclick="DeleteClub">Delete Club</button>
+                    <button class="btn btn-success" @onclick="() => NavigateToCreateCourse(club.Id)">Add Course</button>
+                </div>
             }
-        </ul>
+        </div>
+
+        <h4>Courses</h4>
+        @if (club.Courses == null || !club.Courses.Any())
+        {
+            <div class="alert alert-info">No courses found for this club.</div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var course in club.Courses)
+                {
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">@course.Name</h5>
+                                <p class="card-text"><strong>Type:</strong> @course.Type</p>
+                            </div>
+                            <div class="card-footer">
+                                @if (AuthService.IsAuthenticated && (AuthService.Role == "Admin" || AuthService.Role == "Personal"))
+                                {
+                                    <button class="btn btn-sm btn-primary me-2" @onclick="() => EditCourse(course.Id)">Edit Course</button>
+                                    <button class="btn btn-sm btn-danger me-2" @onclick="() => DeleteCourse(course.Id)">Delete Course</button>
+                                }
+                                @if (AuthService.IsAuthenticated)
+                                {
+                                    <button class="btn btn-sm btn-success me-2" @onclick='() => NavManager.NavigateTo($"/bookcourse/{course.Id}")'>Book Now</button>
+                                    <button class="btn btn-sm btn-outline-primary" @onclick='() => NavManager.NavigateTo($"/courseavailability/{course.Id}")'>View Availability</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <div class="alert alert-warning">@message</div>
+        }
     }
-}
+</div>
 
 @code {
     [Parameter]
@@ -109,5 +128,10 @@ else
     private async Task<bool> ConfirmDeletion(string message)
     {
         return await Task.FromResult(true);
+    }
+
+      private void NavigateToCreateCourse(int clubId)
+    {
+        NavManager.NavigateTo($"/createcourse/{clubId}");
     }
 }

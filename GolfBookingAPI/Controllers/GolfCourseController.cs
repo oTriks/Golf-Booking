@@ -70,7 +70,7 @@ public class GolfCourseController : ControllerBase
     }
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Personal")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCourse(int id)
     {

@@ -5,13 +5,15 @@ namespace GolfBookingUI.Services
         public bool IsAuthenticated { get; private set; }
         public string? Token { get; private set; }
         public string? Username { get; private set; }
+        public string? Role { get; private set; } // New property
 
         public event Action? OnAuthStateChanged;
 
-        public void SetAuthenticationState(string? token, string? username)
+        public void SetAuthenticationState(string? token, string? username, string? role)
         {
             Token = token;
             Username = username;
+            Role = role;
             IsAuthenticated = !string.IsNullOrWhiteSpace(token);
             OnAuthStateChanged?.Invoke();
         }
@@ -33,6 +35,7 @@ namespace GolfBookingUI.Services
         {
             Token = null;
             Username = null;
+            Role = null;
             IsAuthenticated = false;
             OnAuthStateChanged?.Invoke();
         }

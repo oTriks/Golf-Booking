@@ -3,38 +3,47 @@
 @inject GolfBookingUI.Services.AuthService AuthService
 @using GolfBooking.Shared.Dtos
 
-<h3>My Waiting List</h3>
-
-@if (waitingEntries == null)
-{
-    <p><em>Loading waiting list entries...</em></p>
-}
-else if (!waitingEntries.Any())
-{
-    <p>You are not on any waiting list.</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Course</th>
-                <th>Tee Time</th>
-                <th>Joined On</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var entry in waitingEntries)
+<div class="container my-4">
+    <div class="card shadow">
+        <div class="card-header bg-info text-white">
+            <h3 class="card-title mb-0">My Waiting List</h3>
+        </div>
+        <div class="card-body">
+            @if (waitingEntries == null)
             {
-                <tr>
-                    <td>@entry.GolfCourseId</td>
-                    <td>@entry.TeeTime.ToString("g")</td>
-                    <td>@entry.CreatedAt.ToString("g")</td>
-                </tr>
+                <p><em>Loading waiting list entries...</em></p>
             }
-        </tbody>
-    </table>
-}
+            else if (!waitingEntries.Any())
+            {
+                <div class="alert alert-warning">You are not on any waiting list.</div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Course</th>
+                                <th>Tee Time</th>
+                                <th>Joined On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var entry in waitingEntries)
+                            {
+                                <tr>
+                                    <td>@entry.GolfCourseId</td>
+                                    <td>@entry.TeeTime.ToString("g")</td>
+                                    <td>@entry.CreatedAt.ToString("g")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 
 @code {
     private List<WaitingListRead>? waitingEntries;
@@ -43,5 +52,17 @@ else
     {
         AuthService.ApplyBearerToken(Http);
         waitingEntries = await Http.GetFromJsonAsync<List<WaitingListRead>>("api/WaitingList/myentries");
+
+        if (waitingEntries != null)
+        {
+            var expiredEntries = waitingEntries.Where(e => e.TeeTime < DateTime.UtcNow).ToList();
+
+            foreach (var entry in expiredEntries)
+            {
+                await Http.DeleteAsync($"api/WaitingList/{entry.Id}");
+            }
+
+            waitingEntries = waitingEntries.Where(e => e.TeeTime >= DateTime.UtcNow).ToList();
+        }
     }
 }

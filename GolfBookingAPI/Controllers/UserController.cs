@@ -60,17 +60,13 @@ public class UserController : ControllerBase
         return Ok("User registered successfully.");
     }
 
-
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         var user = await _context.Users
             .FirstOrDefaultAsync(u => u.Username == request.Username);
 
-        if (user == null)
-            return Unauthorized("Invalid credentials");
-
-        if (user.Password != request.Password)
+        if (user == null || user.Password != request.Password)
             return Unauthorized("Invalid credentials");
 
         var tokenString = JwtHelper.GenerateJwtToken(
@@ -79,8 +75,15 @@ public class UserController : ControllerBase
             _configuration
         );
 
-        return Ok(new { token = tokenString });
+        // Return token, role, and username
+        return Ok(new
+        {
+            token = tokenString,
+            role = user.Role,
+            username = user.Username
+        });
     }
+
 
     [Authorize(Roles = "Admin")]
     [HttpGet]

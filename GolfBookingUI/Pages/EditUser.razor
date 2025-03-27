@@ -4,29 +4,46 @@
 @inject NavigationManager NavManager
 @using GolfBooking.Shared.Dtos
 
-<h3>Edit User</h3>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Edit User</h3>
+                </div>
+                <div class="card-body">
+                    @if (userUpdate == null)
+                    {
+                        <p><em>Loading user data...</em></p>
+                    }
+                    else
+                    {
+                        <EditForm Model="userUpdate" OnValidSubmit="HandleValidSubmit">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
 
-@if (userUpdate == null)
-{
-    <p><em>Loading user data...</em></p>
-}
-else
-{
-    <EditForm Model="userUpdate" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-
-        <div>
-            <label>Username:</label>
-            <InputText @bind-Value="userUpdate.Username" />
+                            <div class="mb-3">
+                                <label class="form-label">Username:</label>
+                                <InputText @bind-Value="userUpdate.Username" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Role:</label>
+                                <InputText @bind-Value="userUpdate.Role" class="form-control" />
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                        </EditForm>
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(message))
+                {
+                    <div class="card-footer">
+                        <div class="alert alert-info mb-0">@message</div>
+                    </div>
+                }
+            </div>
         </div>
-        <div>
-            <label>Role:</label>
-            <InputText @bind-Value="userUpdate.Role" />
-        </div>
-        <button type="submit">Save Changes</button>
-    </EditForm>
-}
+    </div>
+</div>
 
 @code {
     [Parameter]
