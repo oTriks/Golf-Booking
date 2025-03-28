@@ -1,0 +1,56 @@
+@page "/clubs"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@inject GolfBookingUI.Services.AuthService AuthService
+
+<div class="container">
+    @if (AuthService.Role == "Admin" || AuthService.Role == "Personal")
+    {
+        <button class="btn btn-primary mb-3" @onclick="NavigateToCreateClub">
+            Create New Club
+        </button>
+    }
+
+    @if (clubs == null)
+    {
+        <p><em>Loading clubs...</em></p>
+    }
+    else if (!clubs.Any())
+    {
+        <p>No clubs found.</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var club in clubs)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">@club.Name</h5>
+                            <p class="card-text"><strong>Location:</strong> @club.Location</p>
+                            <p class="card-text"><strong>Type:</strong> @club.Type</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class="btn btn-sm btn-outline-primary" href="@($"/club/{club.Id}")">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private List<ClubRead>? clubs;
+
+    protected override async Task OnInitializedAsync()
+    {
+        clubs = await Http.GetFromJsonAsync<List<ClubRead>>("api/GolfClub");
+    }
+
+    private void NavigateToCreateClub()
+    {
+        NavManager.NavigateTo("/createclub");
+    }
+}

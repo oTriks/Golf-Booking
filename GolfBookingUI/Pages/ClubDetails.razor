@@ -1,0 +1,137 @@
+@page "/club/{Id:int}"
+@using GolfBooking.Shared.Dtos
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@inject GolfBookingUI.Services.AuthService AuthService
+
+<div class="container my-4">
+    @if (club == null)
+    {
+        <p><em>Loading club details...</em></p>
+    }
+    else
+    {
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="mb-0">@club.Name</h3>
+            </div>
+            <div class="card-body">
+                <p><strong>Location:</strong> @club.Location</p>
+                <p><strong>Type:</strong> @club.Type</p>
+            </div>
+            @if (AuthService.IsAuthenticated && (AuthService.Role == "Admin" || AuthService.Role == "Personal"))
+            {
+                <div class="card-footer">
+                    <button class="btn btn-primary me-2" @onclick="EditClub">Edit Club</button>
+                    <button class="btn btn-danger me-2" @onclick="DeleteClub">Delete Club</button>
+                    <button class="btn btn-success" @onclick="() => NavigateToCreateCourse(club.Id)">Add Course</button>
+                </div>
+            }
+        </div>
+
+        <h4>Courses</h4>
+        @if (club.Courses == null || !club.Courses.Any())
+        {
+            <div class="alert alert-info">No courses found for this club.</div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var course in club.Courses)
+                {
+                    <div class="col-md-6 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">@course.Name</h5>
+                                <p class="card-text"><strong>Type:</strong> @course.Type</p>
+                            </div>
+                            <div class="card-footer">
+                                @if (AuthService.IsAuthenticated && (AuthService.Role == "Admin" || AuthService.Role == "Personal"))
+                                {
+                                    <button class="btn btn-sm btn-primary me-2" @onclick="() => EditCourse(course.Id)">Edit Course</button>
+                                    <button class="btn btn-sm btn-danger me-2" @onclick="() => DeleteCourse(course.Id)">Delete Course</button>
+                                }
+                                @if (AuthService.IsAuthenticated)
+                                {
+                                    <button class="btn btn-sm btn-success me-2" @onclick='() => NavManager.NavigateTo($"/bookcourse/{course.Id}")'>Book Now</button>
+                                    <button class="btn btn-sm btn-outline-primary" @onclick='() => NavManager.NavigateTo($"/courseavailability/{course.Id}")'>View Availability</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        @if (!string.IsNullOrEmpty(message))
+        {
+            <div class="alert alert-warning">@message</div>
+        }
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private ClubRead? club;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        club = await Http.GetFromJsonAsync<ClubRead>($"api/GolfClub/{Id}");
+    }
+
+    private void EditClub()
+    {
+        NavManager.NavigateTo($"/editclub/{Id}");
+    }
+
+    private async Task DeleteClub()
+    {
+        if (!await ConfirmDeletion("Are you sure you want to delete this club?"))
+            return;
+
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.DeleteAsync($"api/GolfClub/{Id}");
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/clubs");
+        }
+        else
+        {
+            message = $"Delete failed: {response.ReasonPhrase}";
+        }
+    }
+
+    private void EditCourse(int courseId)
+    {
+        NavManager.NavigateTo($"/editcourse/{courseId}");
+    }
+
+    private async Task DeleteCourse(int courseId)
+    {
+        if (!await ConfirmDeletion("Are you sure you want to delete this course?"))
+            return;
+
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.DeleteAsync($"api/GolfCourse/{courseId}");
+        if (response.IsSuccessStatusCode)
+        {
+            club = await Http.GetFromJsonAsync<ClubRead>($"api/GolfClub/{Id}");
+        }
+        else
+        {
+            message = $"Delete failed: {response.ReasonPhrase}";
+        }
+    }
+
+    private async Task<bool> ConfirmDeletion(string message)
+    {
+        return await Task.FromResult(true);
+    }
+
+      private void NavigateToCreateCourse(int clubId)
+    {
+        NavManager.NavigateTo($"/createcourse/{clubId}");
+    }
+}

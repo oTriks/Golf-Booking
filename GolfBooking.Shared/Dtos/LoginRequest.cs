@@ -1,4 +1,3 @@
-// File: GolfBooking.Shared/Dtos/LoginRequest.cs
 namespace GolfBooking.Shared.Dtos
 {
     public class LoginRequest

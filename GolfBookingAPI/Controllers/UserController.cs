@@ -1,11 +1,8 @@
-// GolfBookingAPI/Controllers/UserController.cs
-
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
-using Golf_Booking.Models;
-// using Golf_Booking.Dtos;
+using GolfBookingAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using GolfBooking.Shared.Dtos;
 
@@ -26,7 +23,6 @@ public class UserController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request)
     {
-        // Check if username already exists
         var existingUser = await _context.Users
             .FirstOrDefaultAsync(u => u.Username == request.Username);
 
@@ -35,7 +31,6 @@ public class UserController : ControllerBase
             return BadRequest("Username already in use.");
         }
 
-        // For a real app, store a hashed password instead of plain text
         var newUser = new AppUser
         {
             Username = request.Username,
@@ -43,7 +38,6 @@ public class UserController : ControllerBase
             Role = request.Role
         };
 
-        // If the user is not an admin, require a club membership
         if (request.Role.ToLower() != "admin")
         {
             if (!request.GolfClubId.HasValue)
@@ -51,7 +45,6 @@ public class UserController : ControllerBase
                 return BadRequest("Club membership is required for players and personals.");
             }
 
-            // Check if the provided club exists
             var club = await _context.GolfClubs.FindAsync(request.GolfClubId.Value);
             if (club == null)
             {
@@ -67,30 +60,30 @@ public class UserController : ControllerBase
         return Ok("User registered successfully.");
     }
 
-
-    // 2) Login: Return JWT (similar to your existing AccountController)
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         var user = await _context.Users
             .FirstOrDefaultAsync(u => u.Username == request.Username);
 
-        if (user == null)
+        if (user == null || user.Password != request.Password)
             return Unauthorized("Invalid credentials");
 
-        // Compare passwords (for production: use a proper hashing check)
-        if (user.Password != request.Password)
-            return Unauthorized("Invalid credentials");
-
-        // Create JWT with user-specific role
         var tokenString = JwtHelper.GenerateJwtToken(
             user.Username,
             user.Role,
             _configuration
         );
 
-        return Ok(new { token = tokenString });
+        // Return token, role, and username
+        return Ok(new
+        {
+            token = tokenString,
+            role = user.Role,
+            username = user.Username
+        });
     }
+
 
     [Authorize(Roles = "Admin")]
     [HttpGet]
@@ -122,6 +115,23 @@ public class UserController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "Admin")]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateUser(int id, [FromBody] UserUpdate request)
+    {
+        var user = await _context.Users.FindAsync(id);
+        if (user == null)
+        {
+            return NotFound("User not found.");
+        }
+
+        user.Username = request.Username;
+        user.Role = request.Role;
+
+        _context.Users.Update(user);
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
+
 }
-
-

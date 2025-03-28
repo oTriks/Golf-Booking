@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Golf_Booking.Models;
-// using Golf_Booking.Dtos;
+using GolfBookingAPI.Models;
 using GolfBooking.Shared.Dtos;
+using Microsoft.Extensions.Logging;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -42,9 +42,7 @@ public class GolfClubController : ControllerBase
         return clubDtos;
     }
 
-
-
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Personal")]
     [HttpPost]
     public async Task<ActionResult<GolfClub>> CreateClub([FromBody] ClubCreate clubDto)
     {
@@ -52,7 +50,7 @@ public class GolfClubController : ControllerBase
         {
             Name = clubDto.Name,
             Location = clubDto.Location,
-            Type = clubDto.Type  // This will be "Club" by default if not provided by the client.
+            Type = clubDto.Type
         };
 
         _context.GolfClubs.Add(club);
@@ -62,11 +60,10 @@ public class GolfClubController : ControllerBase
 
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Personal")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteClub(int id)
     {
-        // Include courses if you want to ensure they are loaded before deletion
         var club = await _context.GolfClubs.Include(c => c.Courses)
                                            .FirstOrDefaultAsync(c => c.Id == id);
         if (club == null)
@@ -74,13 +71,59 @@ public class GolfClubController : ControllerBase
             return NotFound("Golf club not found.");
         }
 
-        // Optionally, check if there are any courses and handle accordingly
-        // For example, you might want to prevent deletion if courses exist,
-        // or you may allow cascade deletion.
-
         _context.GolfClubs.Remove(club);
         await _context.SaveChangesAsync();
 
+        return NoContent();
+    }
+
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ClubRead>> GetClub(int id)
+    {
+        var club = await _context.GolfClubs
+            .Include(c => c.Courses)
+            .FirstOrDefaultAsync(c => c.Id == id);
+
+        if (club == null)
+        {
+            return NotFound();
+        }
+
+        var clubDto = new ClubRead
+        {
+            Id = club.Id,
+            Name = club.Name,
+            Location = club.Location,
+            Type = club.Type,
+            Courses = club.Courses.Select(course => new CourseRead
+            {
+                Id = course.Id,
+                Name = course.Name,
+                GolfClubId = course.GolfClubId,
+                GolfClubName = club.Name,
+                Type = course.Type
+            }).ToList()
+        };
+
+        return clubDto;
+    }
+
+    [Authorize(Roles = "Admin,Personal")]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateClub(int id, [FromBody] ClubUpdate clubDto)
+    {
+        var club = await _context.GolfClubs.FindAsync(id);
+        if (club == null)
+        {
+            return NotFound("Golf club not found.");
+        }
+
+        club.Name = clubDto.Name;
+        club.Location = clubDto.Location;
+        club.Type = clubDto.Type;
+
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 

@@ -1,0 +1,53 @@
+@page "/createclub"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@using GolfBooking.Shared.Dtos
+
+<h3>Create a New Club</h3>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <p class="text-danger">@message</p>
+}
+
+<EditForm Model="clubModel" OnValidSubmit="HandleCreateClub">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <InputText id="name" class="form-control" @bind-Value="clubModel.Name" />
+    </div>
+    <div class="mb-3">
+        <label for="location" class="form-label">Location:</label>
+        <InputText id="location" class="form-control" @bind-Value="clubModel.Location" />
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-label">Type:</label>
+        <InputText id="type" class="form-control" @bind-Value="clubModel.Type" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Club</button>
+</EditForm>
+
+@code {
+    private ClubCreate clubModel = new ClubCreate
+    {
+        Name = "",
+        Location = "",
+        Type = "Club"
+    };
+    private string? message;
+
+    private async Task HandleCreateClub()
+    {
+        var response = await Http.PostAsJsonAsync("api/GolfClub", clubModel);
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/clubs");
+        }
+        else
+        {
+            message = $"Failed to create club: {await response.Content.ReadAsStringAsync()}";
+        }
+    }
+}

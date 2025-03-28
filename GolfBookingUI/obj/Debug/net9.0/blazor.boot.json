@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "GolfBookingUI",
   "resources": {
-    "hash": "sha256-YYXbxaA39/tAeUhEGI5NWzjYGKK79j9GynIFaKaAbTA=",
+    "hash": "sha256-qVvxQ+tqgSv0bqhuykIAb+dFYp5YEhgRy2gNqIpoJzs=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.qe23mgxr71.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.flveird317.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -201,10 +201,10 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "GolfBooking.Shared.g5zws4gtl8.wasm": "GolfBooking.Shared.wasm",
-      "GolfBooking.Shared.nzimckh2lv.pdb": "GolfBooking.Shared.pdb",
-      "GolfBookingUI.148yzv7bud.wasm": "GolfBookingUI.wasm",
-      "GolfBookingUI.z3s28usrvd.pdb": "GolfBookingUI.pdb"
+      "GolfBooking.Shared.1o64g5iwe9.wasm": "GolfBooking.Shared.wasm",
+      "GolfBooking.Shared.2blds61f9d.pdb": "GolfBooking.Shared.pdb",
+      "GolfBookingUI.tadvs03k2h.wasm": "GolfBookingUI.wasm",
+      "GolfBookingUI.bjo1r7zyol.pdb": "GolfBookingUI.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.hmanx9razn.js": "sha256-d7UNSArplVrX3arY2Kmhxp1wN79ng8hLqIBrkiQ9Gbo="
@@ -414,12 +414,12 @@
       "WindowsBase.377bly7twj.wasm": "sha256-0VmBdMjdc0nZGHDSfaGirT6y3mJTM0qx8eqCUC/rpiE=",
       "mscorlib.o0184ey5ia.wasm": "sha256-2GxNKZQJVJvYMUxSTuXa5V2qxawSMMHZtwG33SKVCZU=",
       "netstandard.hb3h2rr8mk.wasm": "sha256-DWn9+RH/ElZQ6imlYqVwZvir1KTzNwY18AzGmnyiymU=",
-      "GolfBooking.Shared.g5zws4gtl8.wasm": "sha256-DBqNaU/eXIr9Y4SWx/B8E2I+0OPvbOjThBVbJQM9z7U=",
-      "GolfBookingUI.148yzv7bud.wasm": "sha256-kWwblwUwGrw+30kx8YBHTglgDm7q+dVnSWkxdkDxQxQ="
+      "GolfBooking.Shared.1o64g5iwe9.wasm": "sha256-wV57ViPUymFppUYXuA/Q4iLUTQgQYssOYnzMTlB4FuI=",
+      "GolfBookingUI.tadvs03k2h.wasm": "sha256-FSHknhV4RRwLjlMQCSlWf7wpC5wCSxqW+WZYkLwJhBA="
     },
     "pdb": {
-      "GolfBooking.Shared.nzimckh2lv.pdb": "sha256-XQrqKIccr4GIEVOOBeLLZEx6Uzm6xY6VYdKoiJSmU1E=",
-      "GolfBookingUI.z3s28usrvd.pdb": "sha256-MUVIBtpbKgjRnHcsVNQeYrvLjclbtAr2u1oCw3N8V8A="
+      "GolfBooking.Shared.2blds61f9d.pdb": "sha256-HvGob+Pueu0pzikw36jL+iXmdCV7z4IVzreLtIM/H24=",
+      "GolfBookingUI.bjo1r7zyol.pdb": "sha256-iaYQzBkO877A+YOBYzi20yRtTxV/oOUl6tktSGZD+8Q="
     }
   },
   "cacheBootResources": true,

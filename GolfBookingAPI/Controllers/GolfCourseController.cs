@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Golf_Booking.Models;
-// using Golf_Booking.Dtos;
+using GolfBookingAPI.Models;
 using GolfBooking.Shared.Dtos;
 
 [ApiController]
@@ -19,7 +18,6 @@ public class GolfCourseController : ControllerBase
         _context = context;
     }
 
-    // GET: api/GolfCourse
     [HttpGet]
     public async Task<ActionResult<IEnumerable<CourseRead>>> GetCourses()
     {
@@ -37,12 +35,10 @@ public class GolfCourseController : ControllerBase
         return courseDtos;
     }
 
-    // POST: api/GolfCourse
     [Authorize(Roles = "Personal,Admin")]
     [HttpPost]
     public async Task<ActionResult<CourseRead>> CreateCourse([FromBody] CourseCreate courseDto)
     {
-        // Check if the referenced golf club exists
         var club = await _context.GolfClubs.FindAsync(courseDto.GolfClubId);
         if (club == null)
         {
@@ -53,21 +49,20 @@ public class GolfCourseController : ControllerBase
         {
             Name = courseDto.Name,
             GolfClubId = courseDto.GolfClubId,
-            GolfClub = club,  // Set the navigation property
+            GolfClub = club,
             Type = courseDto.Type
         };
 
         _context.GolfCourses.Add(course);
         await _context.SaveChangesAsync();
 
-        // Map to DTO to avoid cycles in serialization:
         var courseReadDto = new CourseRead
         {
             Id = course.Id,
             Name = course.Name,
             GolfClubId = course.GolfClubId,
             GolfClubName = course.GolfClub?.Name,
-            Type = course.Type  // Include the Type property here
+            Type = course.Type
 
         };
 
@@ -75,7 +70,7 @@ public class GolfCourseController : ControllerBase
     }
 
 
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Personal")]
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteCourse(int id)
     {
@@ -91,5 +86,22 @@ public class GolfCourseController : ControllerBase
         return NoContent();
     }
 
+    [Authorize(Roles = "Personal,Admin")]
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateCourse(int id, [FromBody] CourseUpdate courseDto)
+    {
+        var course = await _context.GolfCourses.FindAsync(id);
+        if (course == null)
+        {
+            return NotFound("Golf course not found.");
+        }
+
+        course.Name = courseDto.Name;
+        course.Type = courseDto.Type;
+        course.GolfClubId = courseDto.GolfClubId;
+
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
 
 }

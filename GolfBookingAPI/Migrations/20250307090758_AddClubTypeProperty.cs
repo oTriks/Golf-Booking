@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Golf_Booking.Migrations
+namespace GolfBookingAPI.Migrations
 {
     /// <inheritdoc />
     public partial class AddClubTypeProperty : Migration

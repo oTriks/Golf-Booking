@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Golf_Booking.Migrations
+namespace GolfBookingAPI.Migrations
 {
     [DbContext(typeof(BookingContext))]
     [Migration("20250306175829_AddGolfCourseTypeColumn")]
@@ -24,7 +24,7 @@ namespace Golf_Booking.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Golf_Booking.Models.AppUser", b =>
+            modelBuilder.Entity("GolfBookingAPI.Models.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace Golf_Booking.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Golf_Booking.Models.GolfBooking", b =>
+            modelBuilder.Entity("GolfBookingAPI.Models.GolfBooking", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +77,7 @@ namespace Golf_Booking.Migrations
                     b.ToTable("GolfBookings");
                 });
 
-            modelBuilder.Entity("Golf_Booking.Models.GolfClub", b =>
+            modelBuilder.Entity("GolfBookingAPI.Models.GolfClub", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,7 +98,7 @@ namespace Golf_Booking.Migrations
                     b.ToTable("GolfClubs");
                 });
 
-            modelBuilder.Entity("Golf_Booking.Models.GolfCourse", b =>
+            modelBuilder.Entity("GolfBookingAPI.Models.GolfCourse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -124,9 +124,9 @@ namespace Golf_Booking.Migrations
                     b.ToTable("GolfCourses");
                 });
 
-            modelBuilder.Entity("Golf_Booking.Models.GolfBooking", b =>
+            modelBuilder.Entity("GolfBookingAPI.Models.GolfBooking", b =>
                 {
-                    b.HasOne("Golf_Booking.Models.GolfCourse", "GolfCourse")
+                    b.HasOne("GolfBookingAPI.Models.GolfCourse", "GolfCourse")
                         .WithMany()
                         .HasForeignKey("GolfCourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -135,9 +135,9 @@ namespace Golf_Booking.Migrations
                     b.Navigation("GolfCourse");
                 });
 
-            modelBuilder.Entity("Golf_Booking.Models.GolfCourse", b =>
+            modelBuilder.Entity("GolfBookingAPI.Models.GolfCourse", b =>
                 {
-                    b.HasOne("Golf_Booking.Models.GolfClub", "GolfClub")
+                    b.HasOne("GolfBookingAPI.Models.GolfClub", "GolfClub")
                         .WithMany("Courses")
                         .HasForeignKey("GolfClubId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -146,7 +146,7 @@ namespace Golf_Booking.Migrations
                     b.Navigation("GolfClub");
                 });
 
-            modelBuilder.Entity("Golf_Booking.Models.GolfClub", b =>
+            modelBuilder.Entity("GolfBookingAPI.Models.GolfClub", b =>
                 {
                     b.Navigation("Courses");
                 });

@@ -9,7 +9,6 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// **1. Retrieve Connection String from Azure Key Vault**
 var kvUri = "https://golfbookingvault.vault.azure.net";
 builder.Configuration.AddAzureKeyVault(new Uri(kvUri), new DefaultAzureCredential());
 
@@ -18,17 +17,14 @@ KeyVaultSecret secret = client.GetSecret("ConnectDefault");
 var connectionString = secret.Value;
 Console.WriteLine($"Connection string successfully retrieved from Key Vault.");
 
-// **2. Configure Database Context**
 builder.Services.AddDbContext<BookingContext>(options =>
     options.UseSqlServer(connectionString, sqlServerOptions =>
         sqlServerOptions.EnableRetryOnFailure())
     .LogTo(Console.WriteLine, LogLevel.Information)
 );
 
-// **3. Add Controllers**
 builder.Services.AddControllers();
 
-// **Add CORS configuration**
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowBlazorClient", policy =>
@@ -39,7 +35,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-// **4. Configure Authentication & JWT Token Validation**
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -61,13 +56,11 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-// **5. Add API Documentation (Swagger)**
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Golf Booking API", Version = "v1" });
 
-    // Add JWT Authentication to Swagger
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "Enter 'Bearer {token}' (without quotes) in the text input below.",
@@ -95,26 +88,21 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// **6. Enable Swagger in Development Mode**
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// **7. Middleware Setup**
 app.UseHttpsRedirection();
 
-// Use CORS policy BEFORE Authentication/Authorization middleware:
 app.UseCors("AllowBlazorClient");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-// **8. Map Controllers**
 app.MapControllers();
 
-// **9. Health Check & Debugging**
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<BookingContext>();

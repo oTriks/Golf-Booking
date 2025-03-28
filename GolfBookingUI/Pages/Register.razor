@@ -2,43 +2,56 @@
 @inject HttpClient Http
 @using GolfBooking.Shared.Dtos
 
-<h3>User Registration</h3>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">User Registration</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="registerModel" OnValidSubmit="HandleRegister">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
 
-<EditForm Model="registerModel" OnValidSubmit="HandleRegister">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div>
-        <label>Username:</label>
-        <InputText @bind-Value="registerModel.Username" />
-    </div>
-    <div>
-        <label>Password:</label>
-        <InputText @bind-Value="registerModel.Password" type="password" />
-    </div>
-    <div>
-        <label>Role:</label>
-        <InputSelect @bind-Value="registerModel.Role">
-            <option value="">-- Select Role --</option>
-            <option value="Player">Player</option>
-            <option value="Personal">Personal</option>
-        </InputSelect>
-    </div>
-    @* Only show club selection if Role is not Admin *@
-    @if (!string.Equals(registerModel.Role, "admin", StringComparison.OrdinalIgnoreCase))
-    {
-        <div>
-            <label>Golf Club ID:</label>
-            <InputNumber @bind-Value="registerModel.GolfClubId" />
+                        <div class="mb-3">
+                            <label class="form-label">Username:</label>
+                            <InputText @bind-Value="registerModel.Username" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password:</label>
+                            <InputText @bind-Value="registerModel.Password" type="password" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Role:</label>
+                            <InputSelect @bind-Value="registerModel.Role" class="form-select">
+                                <option value="">-- Select Role --</option>
+                                <option value="Player">Player</option>
+                                <option value="Personal">Personal</option>
+                            </InputSelect>
+                        </div>
+                        @if (!string.Equals(registerModel.Role, "admin", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <div class="mb-3">
+                                <label class="form-label">Golf Club ID:</label>
+                                <InputNumber @bind-Value="registerModel.GolfClubId" class="form-control" />
+                            </div>
+                        }
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </EditForm>
+                </div>
+                @if (!string.IsNullOrEmpty(message))
+                {
+                    <div class="card-footer">
+                        <div class="alert alert-info mb-0">
+                            @message
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
-    }
-    <button type="submit">Register</button>
-</EditForm>
-
-@if (!string.IsNullOrEmpty(message))
-{
-    <p>@message</p>
-}
+    </div>
+</div>
 
 @code {
     private RegisterRequest registerModel = new RegisterRequest
@@ -51,7 +64,6 @@
 
     private async Task HandleRegister()
     {
-        // Replace "api/User/register" with the correct URL if needed
         var response = await Http.PostAsJsonAsync("api/User/register", registerModel);
 
         if (response.IsSuccessStatusCode)

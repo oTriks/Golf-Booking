@@ -1,0 +1,124 @@
+@page "/bookings"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@using GolfBooking.Shared.Dtos
+
+<div class="container mt-4">
+    @if (bookings == null)
+    {
+        <div class="alert alert-info">Loading bookings...</div>
+    }
+    else if (!bookings.Any())
+    {
+        <div class="alert alert-warning">Inga bokningar hittades.</div>
+    }
+    else
+    {
+        @foreach (var courseGroup in bookings.GroupBy(b => b.GolfCourseName))
+        {
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">@courseGroup.Key</h4>
+                </div>
+                <div class="card-body">
+                    @foreach (var timeGroup in courseGroup.GroupBy(b => b.TeeTime))
+                    {
+                        <div class="mb-3">
+                            <h5 class="text-secondary">@timeGroup.Key.ToString("g")</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Tidpunkt</th>
+                                            <th>Användare</th>
+                                            <th>Bokad</th>
+                                            <th>Åtgärd</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var booking in timeGroup.OrderBy(b => b.CreatedAt))
+                                        {
+                                            <tr>
+                                                <td>@booking.TeeTime.ToString("g")</td>
+                                                <td>@booking.UserId</td>
+                                                <td>@booking.CreatedAt.ToString("g")</td>
+                                                <td>
+                                                    @if (AuthService.Role == "Admin" && booking.TeeTime < DateTime.UtcNow)
+                                                    {
+                                                        <button class="btn btn-sm btn-danger"
+                                                            @onclick="() => CancelBooking(booking.Id)">Remove</button>
+                                                    }
+                                                    else if (CanCancelBooking(booking))
+                                                    {
+                                                        <button class="btn btn-sm btn-danger"
+                                                            @onclick="() => CancelBooking(booking.Id)">Unbook</button>
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private List<BookingRead>? bookings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var allBookings = await Http.GetFromJsonAsync<List<BookingRead>>("api/GolfBooking");
+        if (AuthService.Role != "Admin")
+        {
+            bookings = allBookings?.Where(b => b.UserId.Equals(AuthService.Username, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
+        else
+        {
+            bookings = allBookings;
+        }
+    }
+
+    private bool CanCancelBooking(BookingRead booking)
+    {
+        var username = AuthService.Username;
+        if (string.IsNullOrEmpty(username))
+            return false;
+
+        if (booking.TeeTime < DateTime.UtcNow)
+            return false;
+
+        if (AuthService.Role == "Admin" || AuthService.Role == "Personal")
+            return true;
+
+        return booking.UserId.Equals(username, StringComparison.OrdinalIgnoreCase);
+    }
+
+    private async Task CancelBooking(int bookingId)
+    {
+        if (!await ConfirmCancellation("Are you sure you want to cancel this booking?"))
+            return;
+
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.DeleteAsync($"api/GolfBooking/{bookingId}");
+        if (response.IsSuccessStatusCode)
+        {
+            bookings = bookings?.Where(b => b.Id != bookingId).ToList();
+        }
+        else
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Cancel failed: {errorContent}");
+        }
+    }
+
+    private async Task<bool> ConfirmCancellation(string message)
+    {
+        return await Task.FromResult(true);
+    }
+}

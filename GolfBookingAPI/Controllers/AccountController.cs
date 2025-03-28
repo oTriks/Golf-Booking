@@ -2,8 +2,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Golf_Booking.Models;
-// using Golf_Booking.Dtos;
+using GolfBookingAPI.Models;
 using GolfBooking.Shared.Dtos;
 public static class JwtHelper
 {

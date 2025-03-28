@@ -1,33 +1,49 @@
+@page "/"
 @page "/login"
 @inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@inject NavigationManager NavManager
 @using GolfBooking.Shared.Dtos
 
-<h3>User Login</h3>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">User Login</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
 
-<EditForm Model="loginModel" OnValidSubmit="HandleLogin">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div>
-        <label>Username:</label>
-        <InputText @bind-Value="loginModel.Username" />
+                        <div class="mb-3">
+                            <label class="form-label">Username:</label>
+                            <InputText @bind-Value="loginModel.Username" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password:</label>
+                            <InputText @bind-Value="loginModel.Password" type="password" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </EditForm>
+                </div>
+                <div class="card-footer">
+                    @if (!string.IsNullOrEmpty(token))
+                    {
+                        <div class="alert alert-success mb-0">
+                            <strong>Token:</strong> @token
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(message))
+                    {
+                        <div class="alert alert-info mb-0 mt-2">@message</div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label>Password:</label>
-        <InputText @bind-Value="loginModel.Password" type="password" />
-    </div>
-    <button type="submit">Login</button>
-</EditForm>
-
-@if (!string.IsNullOrEmpty(token))
-{
-    <p><strong>Token:</strong> @token</p>
-}
-
-@if (!string.IsNullOrEmpty(message))
-{
-    <p>@message</p>
-}
+</div>
 
 @code {
     private LoginRequest loginModel = new LoginRequest { Username = string.Empty, Password = string.Empty };
@@ -36,15 +52,22 @@
 
     private async Task HandleLogin()
     {
-        // Replace "api/User/login" with the correct API URL if needed
         var response = await Http.PostAsJsonAsync("api/User/login", loginModel);
 
         if (response.IsSuccessStatusCode)
         {
-            // Deserialize the token from the response (assumes it's returned as JSON { token: "..." })
             var result = await response.Content.ReadFromJsonAsync<TokenResult>();
+
             token = result?.token;
             message = "Login successful.";
+
+            AuthService.SetAuthenticationState(
+            token,
+            result?.username,
+            result?.role
+            );
+
+            NavManager.NavigateTo("/clubs");
         }
         else
         {
@@ -52,9 +75,12 @@
         }
     }
 
-    // Define a class to receive the token response.
+
     private class TokenResult
     {
         public string? token { get; set; }
+        public string? role { get; set; }
+        public string? username { get; set; }
     }
+
 }
