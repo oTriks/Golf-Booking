@@ -1,0 +1,12 @@
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\bin\Debug\net9.0\GolfBooking.Shared.deps.json
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\bin\Debug\net9.0\GolfBooking.Shared.dll
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\bin\Debug\net9.0\GolfBooking.Shared.pdb
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.AssemblyInfoInputs.cache
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.AssemblyInfo.cs
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.csproj.CoreCompileInputs.cache
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.dll
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\refint\GolfBooking.Shared.dll
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.pdb
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\ref\GolfBooking.Shared.dll
+C:\Users\oTriks\Desktop\Azure\GolfBooking.Shared\obj\Debug\net9.0\GolfBooking.Shared.sourcelink.json

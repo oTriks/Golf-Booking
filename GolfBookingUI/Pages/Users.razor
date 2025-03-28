@@ -1,0 +1,132 @@
+@page "/users"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@inject GolfBookingUI.Services.AuthService AuthService
+@using GolfBooking.Shared.Dtos
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-warning">@message</div>
+}
+else if (users == null)
+{
+    <p><em>Loading users...</em></p>
+}
+else if (!users.Any())
+{
+    <p>No users found.</p>
+}
+else
+{
+    var adminUsers = users.Where(u => u.Role.Equals("Admin", System.StringComparison.OrdinalIgnoreCase)).ToList();
+    var personalUsers = users.Where(u => u.Role.Equals("Personal", System.StringComparison.OrdinalIgnoreCase)).ToList();
+    var playerUsers = users.Where(u => u.Role.Equals("Player", System.StringComparison.OrdinalIgnoreCase)).ToList();
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Admin</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var user in adminUsers)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>@user.Username</span>
+                                <div>
+                                    <button class="btn btn-sm btn-primary me-1" @onclick="() => EditUser(user.Id)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" @onclick="() => DeleteUser(user.Id)">Delete</button>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">Personal</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var user in personalUsers)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>@user.Username</span>
+                                <div>
+                                    <button class="btn btn-sm btn-primary me-1" @onclick="() => EditUser(user.Id)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" @onclick="() => DeleteUser(user.Id)">Delete</button>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">Players</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var user in playerUsers)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>@user.Username</span>
+                                <div>
+                                    <button class="btn btn-sm btn-primary me-1" @onclick="() => EditUser(user.Id)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" @onclick="() => DeleteUser(user.Id)">Delete</button>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    private List<UserRead>? users;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+
+        var response = await Http.GetAsync("api/User");
+        if (response.IsSuccessStatusCode)
+        {
+            users = await response.Content.ReadFromJsonAsync<List<UserRead>>();
+        }
+        else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized ||
+        response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+        {
+            message = "You are not authorized to view this page.";
+        }
+        else
+        {
+            message = $"Error: {response.ReasonPhrase}";
+        }
+    }
+
+    private async Task DeleteUser(int id)
+    {
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.DeleteAsync($"api/User/{id}");
+        if (response.IsSuccessStatusCode)
+        {
+            users = users?.Where(u => u.Id != id).ToList();
+        }
+        else
+        {
+            message = $"Delete failed: {response.ReasonPhrase}";
+        }
+    }
+
+    private void EditUser(int id)
+    {
+        NavManager.NavigateTo($"/edituser/{id}");
+    }
+}

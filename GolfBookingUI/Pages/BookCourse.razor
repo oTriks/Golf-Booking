@@ -1,0 +1,188 @@
+@page "/bookcourse/{CourseId:int}"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@inject GolfBookingUI.Services.AuthService AuthService
+@using GolfBooking.Shared.Dtos
+
+<div class="container my-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Book Course</h3>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div class="alert alert-danger">@message</div>
+            }
+            else if (availableDates == null || availableTimeSlots == null)
+            {
+                <p><em>Loading booking options...</em></p>
+            }
+            else
+            {
+                <EditForm Model="bookingModel" OnValidSubmit="HandleBooking">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="mb-3">
+                        <label class="form-label">Date:</label>
+                        <select class="form-select" @bind="selectedDate">
+                            @foreach (var date in availableDates)
+                            {
+                                <option value="@date">@date.ToShortDateString()</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Time Slot:</label>
+                        <select class="form-select" @bind="selectedTimeSlot">
+                            @foreach (var slot in availableTimeSlots)
+                            {
+                                <option value="@slot">@slot</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="fw-bold">Selected Booking Time: @selectedDate.Add(TimeSpan.Parse(selectedTimeSlot))</p>
+                    </div>
+
+                    @if (!slotFullyBooked)
+                    {
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info">
+                            This slot is fully booked.
+                        </div>
+                        <button type="button" class="btn btn-warning" @onclick="JoinWaitingList">Join Waiting List</button>
+                    }
+                </EditForm>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int CourseId { get; set; }
+
+    private BookingCreate bookingModel = new BookingCreate();
+    private string? message;
+    private List<DateTime>? availableDates;
+    private List<string>? availableTimeSlots;
+
+    private DateTime _selectedDate;
+    private DateTime selectedDate
+    {
+        get => _selectedDate;
+        set
+        {
+            if (_selectedDate != value)
+            {
+                _selectedDate = value;
+                _ = CheckAvailability();
+            }
+        }
+    }
+    private string _selectedTimeSlot = "09:00";
+    private string selectedTimeSlot
+    {
+        get => _selectedTimeSlot;
+        set
+        {
+            if (_selectedTimeSlot != value)
+            {
+                _selectedTimeSlot = value;
+                _ = CheckAvailability();
+            }
+        }
+    }
+    private bool slotFullyBooked;
+
+    protected override void OnInitialized()
+    {
+        bookingModel.GolfCourseId = CourseId;
+        bookingModel.UserId = AuthService.Username ?? string.Empty;
+
+        availableDates = new List<DateTime>();
+        var today = DateTime.UtcNow.Date;
+        for (int i = 0; i <= 7; i++)
+        {
+            availableDates.Add(today.AddDays(i));
+        }
+        selectedDate = availableDates.First();
+
+        availableTimeSlots = new List<string> { "09:00", "11:00", "13:00", "15:00" };
+        selectedTimeSlot = availableTimeSlots.First();
+
+        _ = CheckAvailability();
+    }
+
+    private async Task CheckAvailability()
+    {
+        var currentTeeTime = selectedDate.Add(TimeSpan.Parse(selectedTimeSlot));
+        Console.WriteLine($"Client: Checking availability for {currentTeeTime:o}");
+
+        var availability = await
+        Http.GetFromJsonAsync<TimeSlotAvailability>($"api/GolfBooking/availability/{CourseId}/{currentTeeTime:o}");
+
+        if (currentTeeTime == selectedDate.Add(TimeSpan.Parse(selectedTimeSlot)))
+        {
+            slotFullyBooked = availability?.AvailableSlots == 0;
+            Console.WriteLine($"Client: slotFullyBooked is now {slotFullyBooked}");
+            await InvokeAsync(StateHasChanged);
+        }
+
+    }
+
+    private async Task HandleBooking()
+    {
+        if (TimeSpan.TryParse(selectedTimeSlot, out var time))
+        {
+            bookingModel.TeeTime = selectedDate.Add(time);
+        }
+        else
+        {
+            message = "Invalid time slot.";
+            return;
+        }
+
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.PostAsJsonAsync("api/GolfBooking", bookingModel);
+        var errorContent = await response.Content.ReadAsStringAsync();
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/bookings");
+        }
+        else
+        {
+            message = $"Booking failed: {errorContent}";
+        }
+    }
+
+    private async Task JoinWaitingList()
+    {
+        var waitingDto = new WaitingListCreate
+        {
+            UserId = AuthService.Username ?? string.Empty,
+            GolfCourseId = CourseId,
+            TeeTime = selectedDate.Add(TimeSpan.Parse(selectedTimeSlot)).ToUniversalTime()
+        };
+
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.PostAsJsonAsync("api/WaitingList", waitingDto);
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/waitinglist");
+        }
+        else
+        {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            message = $"Unable to join the waiting list: {errorContent}";
+        }
+    }
+
+}

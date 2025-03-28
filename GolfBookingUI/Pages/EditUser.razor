@@ -1,0 +1,96 @@
+@page "/edituser/{UserId:int}"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@inject NavigationManager NavManager
+@using GolfBooking.Shared.Dtos
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Edit User</h3>
+                </div>
+                <div class="card-body">
+                    @if (userUpdate == null)
+                    {
+                        <p><em>Loading user data...</em></p>
+                    }
+                    else
+                    {
+                        <EditForm Model="userUpdate" OnValidSubmit="HandleValidSubmit">
+                            <DataAnnotationsValidator />
+                            <ValidationSummary />
+
+                            <div class="mb-3">
+                                <label class="form-label">Username:</label>
+                                <InputText @bind-Value="userUpdate.Username" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Role:</label>
+                                <InputText @bind-Value="userUpdate.Role" class="form-control" />
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                        </EditForm>
+                    }
+                </div>
+                @if (!string.IsNullOrEmpty(message))
+                {
+                    <div class="card-footer">
+                        <div class="alert alert-info mb-0">@message</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int UserId { get; set; }
+
+    private UserUpdate? userUpdate;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+
+        var response = await Http.GetAsync("api/User");
+        if (response.IsSuccessStatusCode)
+        {
+            var users = await response.Content.ReadFromJsonAsync<List<UserRead>>();
+            var selectedUser = users?.FirstOrDefault(u => u.Id == UserId);
+            if (selectedUser != null)
+            {
+                userUpdate = new UserUpdate
+                {
+                    Username = selectedUser.Username,
+                    Role = selectedUser.Role
+                };
+            }
+            else
+            {
+                message = "User not found.";
+            }
+        }
+        else
+        {
+            message = $"Error: {response.ReasonPhrase}";
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.PutAsJsonAsync($"api/User/{UserId}", userUpdate);
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/users");
+        }
+        else
+        {
+            message = $"Update failed: {response.ReasonPhrase}";
+        }
+    }
+}

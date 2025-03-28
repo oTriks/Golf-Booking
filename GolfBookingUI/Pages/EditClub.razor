@@ -1,0 +1,93 @@
+@page "/editclub/{ClubId:int}"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@inject NavigationManager NavManager
+@using GolfBooking.Shared.Dtos
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Edit Golf Club</h3>
+        </div>
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(message))
+            {
+                <div class="alert alert-danger">@message</div>
+            }
+            else if (clubUpdate == null)
+            {
+                <p><em>Loading club data...</em></p>
+            }
+            else
+            {
+                <EditForm Model="clubUpdate" OnValidSubmit="HandleValidSubmit">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="mb-3">
+                        <label class="form-label">Name:</label>
+                        <InputText class="form-control" @bind-Value="clubUpdate.Name" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Location:</label>
+                        <InputText class="form-control" @bind-Value="clubUpdate.Location" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Type:</label>
+                        <InputText class="form-control" @bind-Value="clubUpdate.Type" />
+                    </div>
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                </EditForm>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int ClubId { get; set; }
+
+    private ClubUpdate? clubUpdate;
+    private string? message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.GetAsync("api/GolfClub");
+        if (response.IsSuccessStatusCode)
+        {
+            var clubs = await response.Content.ReadFromJsonAsync<List<ClubRead>>();
+            var selectedClub = clubs?.FirstOrDefault(c => c.Id == ClubId);
+            if (selectedClub != null)
+            {
+                clubUpdate = new ClubUpdate
+                {
+                    Name = selectedClub.Name,
+                    Location = selectedClub.Location,
+                    Type = selectedClub.Type
+                };
+            }
+            else
+            {
+                message = "Club not found.";
+            }
+        }
+        else
+        {
+            message = $"Error: {response.ReasonPhrase}";
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        AuthService.ApplyBearerToken(Http);
+        var response = await Http.PutAsJsonAsync($"api/GolfClub/{ClubId}", clubUpdate);
+        if (response.IsSuccessStatusCode)
+        {
+            NavManager.NavigateTo("/clubs");
+        }
+        else
+        {
+            message = $"Update failed: {response.ReasonPhrase}";
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build API",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/GolfBookingAPI/GolfBookingAPI.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build Blazor",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/GolfBookingUI/GolfBookingUI.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}

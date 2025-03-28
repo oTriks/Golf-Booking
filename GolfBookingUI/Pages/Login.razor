@@ -1,0 +1,86 @@
+@page "/"
+@page "/login"
+@inject HttpClient Http
+@inject GolfBookingUI.Services.AuthService AuthService
+@inject NavigationManager NavManager
+@using GolfBooking.Shared.Dtos
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">User Login</h3>
+                </div>
+                <div class="card-body">
+                    <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+
+                        <div class="mb-3">
+                            <label class="form-label">Username:</label>
+                            <InputText @bind-Value="loginModel.Username" class="form-control" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password:</label>
+                            <InputText @bind-Value="loginModel.Password" type="password" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </EditForm>
+                </div>
+                <div class="card-footer">
+                    @if (!string.IsNullOrEmpty(token))
+                    {
+                        <div class="alert alert-success mb-0">
+                            <strong>Token:</strong> @token
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(message))
+                    {
+                        <div class="alert alert-info mb-0 mt-2">@message</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private LoginRequest loginModel = new LoginRequest { Username = string.Empty, Password = string.Empty };
+    private string? token;
+    private string? message;
+
+    private async Task HandleLogin()
+    {
+        var response = await Http.PostAsJsonAsync("api/User/login", loginModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var result = await response.Content.ReadFromJsonAsync<TokenResult>();
+
+            token = result?.token;
+            message = "Login successful.";
+
+            AuthService.SetAuthenticationState(
+            token,
+            result?.username,
+            result?.role
+            );
+
+            NavManager.NavigateTo("/clubs");
+        }
+        else
+        {
+            message = $"Login failed: {await response.Content.ReadAsStringAsync()}";
+        }
+    }
+
+
+    private class TokenResult
+    {
+        public string? token { get; set; }
+        public string? role { get; set; }
+        public string? username { get; set; }
+    }
+
+}

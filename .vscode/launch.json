@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch API",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build API",
+            "program": "${workspaceFolder}/GolfBookingAPI/bin/Debug/net9.0/GolfBookingAPI.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/GolfBookingAPI",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            }
+        },
+        {
+            "name": "Launch Blazor UI",
+            "type": "blazorwasm",
+            "request": "launch",
+            "preLaunchTask": "build Blazor",
+            "browser": "edge",
+            "url": "http://localhost:5165"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Launch API and Blazor UI",
+            "configurations": [
+                "Launch API",
+                "Launch Blazor UI"
+            ]
+        }
+    ]
+}
